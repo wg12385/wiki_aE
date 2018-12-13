@@ -2,7 +2,7 @@
 
 
 ***************
-Getting started
+New Page
 ***************
 
 something
