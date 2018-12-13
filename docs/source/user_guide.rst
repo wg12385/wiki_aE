@@ -13,15 +13,15 @@ Basics
 
 Commands you need to type into your terminal window (after logging in to BlueCrystal) are written in block quotes as below. Notes are preceeded by a #:
 
-.. code-block:: bash
+  .. code-block:: bash
 
-   type_this_into_terminal_window
-   #Helpful extra instructions, do not type this into the terminal window
+    type_this_into_terminal_window
+    #Helpful extra instructions, do not type this into the terminal window
 
 
 .. _install_bc3:
 
-Install BlueCrystal3 step by step
+Install on BlueCrystal3
 ===================================
 
 **0** Get IT to allow you to use Gaussian on BlueCrystal, email hpc-help@bristol.ac.uk asking them to set up and give your account access to use Gaussian
@@ -140,7 +140,75 @@ Install BlueCrystal3 step by step
 
         python ../../auto-ENRICH/RUN/xyz_to_opt.py
 
-  
+  This will produce an optcom folder filled with .com files and .qsub file('s)
+
+  **5.5** Submit job files for optimisation and frequency correction (conformer relative energies)
+
+    .. code-block:: bash
+
+      qsub molecule1_NMR_0.qsub
+      #If you're submitting over 50 conformers you will have several of these to submitting
+      qsub molecule1_NMR_1.qsub
+      qsub molecule1_NMR_2.qsub
+      # ... ... ...
+
+  **5.6** Wait for the calculations to complete...
+
+  **5.7** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called optlog) and fails (failed folder)
+
+    .. code-block:: bash
+
+      python ../../auto-ENRICH/RUN/move_complete.py
+
+  **5.8** Create NMR input files by running opt_to_nmr.py. This will also create a file called 'population.txt' containing conformer energies
+
+    .. code-block:: bash
+
+      python ../../auto-ENRICH/RUN/opt_to_nmr.py
+
+  This will produce an nmrcom folder filled with .com files and .qsub file('s)
+
+  **5.9** Wait for the calculations to complete...
+
+  **5.10** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called nmrlog) and fails (failed folder)
+
+    .. code-block:: bash
+
+      python ../../auto-ENRICH/RUN/move_complete.py
+
+  **5.11** Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn't deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers
+
+    .. code-block:: bash
+
+      python ../../auto-ENRICH/RUN/nmr_process.py
+
+  **5.12** Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
+
+    .. code-block:: bash
+
+      # This is how you'd make the .txt file in terminal, but you can do this with any word editor
+      vim groups.txt
+      # Input all the equivalency eg
+      # H1 - 72,73,74
+      :wq
+      # save and close file
+
+    .. figure::  _static/equiv.png
+
+       Format for doing equivalency maths, note this molecule has C\ :sub:`2`\  symmetry
+
+  **5.13** Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings > 0.5 Hz and NOEs.
+
+    .. code-block:: bash
+
+      python ../../auto-ENRICH/RUN/nmr_process.py equiv
+
+
+
+
+  End: Deal with failures by submitting manually
+
+
 
 
 
@@ -148,7 +216,7 @@ Install BlueCrystal3 step by step
 
 .. _install_grendel:
 
-Install Grendel step by step
+Install on Grendel
 ====================================
 
 
