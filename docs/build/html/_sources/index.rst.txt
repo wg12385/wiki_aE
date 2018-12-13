@@ -13,7 +13,7 @@ Some words to prove that git is working
    :caption: Contents:
    
    getting_started.rst
-
+   new_page.rst 
 
 Indices and tables
 ==================
