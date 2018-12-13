@@ -11,9 +11,15 @@ Some words to prove that git is working
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
-   getting_started.rst
-   new_page.rst 
+
+   user_guide.rst
+   gaussian.rst
+   scripts.rst
+   ENRICH.rst
+
+
+
+
 
 Indices and tables
 ==================
