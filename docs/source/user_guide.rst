@@ -5,12 +5,98 @@
 User Guide
 ***************
 
-.. _Step_by_step:
 
-Step by Step
-=============================
+.. _basics:
 
-Here's some notes on how to do it, like we do.
+Basics
+===================================
+
+Commands you need to type into your terminal window (after logging in to BlueCrystal) are written in block quotes as below:
+
+.. code-block:: bash
+
+   type_this_into_terminal_window
+
+
+.. _install_bc3:
+
+Install BlueCrystal3 step by step
+===================================
+
+**1** Get read access to this repository (email will.gerrard@bristol.ac.uk with your github account details or request access through github)
+
+**2** Set up your environment:
+
+   **2.1** Load the conda module
+
+       .. code-block:: bash
+
+         module load languages/python-anaconda-5.0.1-2.7
+
+   **2.2** Create a conda environment
+
+      .. code-block:: bash
+
+         conda create --name myenv
+
+   **2.3** Install openbabel and numpy
+
+      .. code-block:: bash
+
+         conda install -c openbabel -n myenv openbabel
+         conda install -n myenv numpy scipy
+
+**3** Set up Github and get a copy of auto-ENRICH:
+
+   **3.1** Find your ssh key, we do this by first going to your home folder in BlueCrystal then opening .ssh/id_dsa.pub (a text file) containing your key
+
+      .. code-block:: bash
+
+         vim .ssh/id_dsa.pub
+
+      .. figure::  _static/sshkey.png
+
+         Example ssh key
+
+   **3.2** Copy the key (all that text)
+
+   **3.3** Login to Github.com then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3
+
+      .. figure::  _static/ssh_github.png
+
+         Navigate through github.com to input ssh key
+
+   **3.4** Enable git
+
+      .. code-block:: bash
+
+         module load tools/git-2.18.0
+
+   **3.5** Copy auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files
+
+      .. code-block:: bash
+
+         git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
+
+**4**
+
+
+
+
+
+
+
+
+
+--------------------------------
+
+.. _install_grendel:
+
+Install Grendel step by step
+====================================
+
+
+
 
 
 .. _faq:

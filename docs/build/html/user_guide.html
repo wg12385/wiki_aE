@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Gaussian" href="gaussian.html" />
     <link rel="prev" title="Welcome to wiki_aE’s documentation!" href="index.html" /> 
 
   
@@ -77,13 +78,18 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contentsree:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#step-by-step">Step by Step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-bluecrystal3-step-by-step">Install BlueCrystal3 step by step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-grendel-step-by-step">Install Grendel step by step</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Gaussian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ENRICH.html">ENRICH</a></li>
 </ul>
 
             
@@ -150,9 +156,72 @@
             
   <div class="section" id="user-guide">
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="step-by-step">
-<span id="id2"></span><h2>Step by Step<a class="headerlink" href="#step-by-step" title="Permalink to this headline">¶</a></h2>
-<p>Here’s some notes on how to do it, like we do.</p>
+<div class="section" id="basics">
+<span id="id2"></span><h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p>Commands you need to type into your terminal window (after logging in to BlueCrystal) are written in block quotes as below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>type_this_into_terminal_window
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-bluecrystal3-step-by-step">
+<span id="install-bc3"></span><h2>Install BlueCrystal3 step by step<a class="headerlink" href="#install-bluecrystal3-step-by-step" title="Permalink to this headline">¶</a></h2>
+<p><strong>1</strong> Get read access to this repository (email <a class="reference external" href="mailto:will&#46;gerrard&#37;&#52;&#48;bristol&#46;ac&#46;uk">will<span>&#46;</span>gerrard<span>&#64;</span>bristol<span>&#46;</span>ac<span>&#46;</span>uk</a> with your github account details or request access through github)</p>
+<p><strong>2</strong> Set up your environment:</p>
+<blockquote>
+<div><p><strong>2.1</strong> Load the conda module</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load languages/python-anaconda-5.0.1-2.7
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>2.2</strong> Create a conda environment</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name myenv
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>2.3</strong> Install openbabel and numpy</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c openbabel -n myenv openbabel
+conda install -n myenv numpy scipy
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>3</strong> Set up Github and get a copy of auto-ENRICH:</p>
+<blockquote>
+<div><p><strong>3.1</strong> Find your ssh key, we do this by first going to your home folder in BlueCrystal then opening .ssh/id_dsa.pub (a text file) containing your key</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim .ssh/id_dsa.pub
+</pre></div>
+</div>
+<div class="figure" id="id4">
+<img alt="_images/sshkey.png" src="_images/sshkey.png" />
+<p class="caption"><span class="caption-text">Example ssh key</span></p>
+</div>
+</div></blockquote>
+<p><strong>3.2</strong> Copy the key (all that text)</p>
+<p><strong>3.3</strong> Login to Github.com then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3</p>
+<blockquote>
+<div><div class="figure" id="id5">
+<img alt="_images/ssh_github.png" src="_images/ssh_github.png" />
+<p class="caption"><span class="caption-text">Navigate through github.com to input ssh key</span></p>
+</div>
+</div></blockquote>
+<p><strong>3.4</strong> Enable git</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load tools/git-2.18.0
+</pre></div>
+</div>
+<p><strong>3.5</strong> Copy auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>4</strong></p>
+<hr class="docutils" />
+</div>
+<div class="section" id="install-grendel-step-by-step">
+<span id="install-grendel"></span><h2>Install Grendel step by step<a class="headerlink" href="#install-grendel-step-by-step" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="faq">
 <span id="id3"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
@@ -166,6 +235,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="gaussian.html" class="btn btn-neutral float-right" title="Gaussian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to wiki_aE’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
