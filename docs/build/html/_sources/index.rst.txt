@@ -6,10 +6,13 @@
 Welcome to wiki_aE's documentation!
 ===================================
 
+Some words to prove that git is working
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   
+   getting_started.rst
 
 
 Indices and tables
