@@ -83,7 +83,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-on-bluecrystal3">Install on BlueCrystal3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#install-on-grendel">Install on Grendel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-on-bluecrystal3">Run on BlueCrystal3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
@@ -254,11 +254,12 @@ module load tools/git-2.18.0
 </div>
 </div></blockquote>
 </div></blockquote>
-<p><strong>5</strong> Start using auto-ENRICH</p>
-<blockquote>
-<div><p>auto-ENRICH automates moving from a conformational search output to getting out NMR parameters. Save the output of your conformational search to one .xyz file (that contains lots of conformers) for a particular molecule</p>
-<p><strong>5.1</strong> Make a folder with the molecule name and put your .xyz file in it, cd into that folder</p>
-<p><strong>5.2</strong> Copy the preferences file from the auto-ENRICH folder then open it and decide what you want to run. If the auto-ENRICH folder is 2 directories above your molecules folder (which you are now in) type:</p>
+</div>
+<div class="section" id="run-on-bluecrystal3">
+<span id="run-bc3"></span><h2>Run on BlueCrystal3<a class="headerlink" href="#run-on-bluecrystal3" title="Permalink to this headline">¶</a></h2>
+<p>auto-ENRICH automates moving from a conformational search output to getting out NMR parameters. Save the output of your conformational search to one .xyz file (that contains lots of conformers) for a particular molecule</p>
+<p><strong>1</strong> Make a folder with the molecule name and put your .xyz file in it, cd into that folder</p>
+<p><strong>2</strong> Copy the preferences file from the auto-ENRICH folder then open it and decide what you want to run. If the auto-ENRICH folder is 2 directories above your molecules folder (which you are now in) type:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -rf ../../auto-ENRICH/ENRICH.prefs ./
 <span class="c1">#The cp means copy, first place is where it&#39;s copying from,</span>
@@ -268,7 +269,7 @@ module load tools/git-2.18.0
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>5.3</strong> Edit the preferences</p>
+<p><strong>3</strong> Edit the preferences</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim ENRICH.prefs
 <span class="c1">#Press the i key then edit the file</span>
@@ -277,14 +278,14 @@ module load tools/git-2.18.0
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>5.4</strong> Create geometry optimisation and frequency correction input files for Gaussian based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file</p>
+<p><strong>4</strong> Create geometry optimisation and frequency correction input files for Gaussian based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/xyz_to_opt.py
 </pre></div>
 </div>
 </div></blockquote>
 <p>This will produce an optcom folder filled with .com files and .qsub file(‘s)</p>
-<p><strong>5.5</strong> Submit job files for optimisation and frequency correction (conformer relative energies)</p>
+<p><strong>5</strong> Submit job files for optimisation and frequency correction (conformer relative energies)</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qsub molecule1_NMR_0.qsub
 <span class="c1">#If you&#39;re submitting over 50 conformers you will have several of these to submitting</span>
@@ -294,36 +295,36 @@ qsub molecule1_NMR_2.qsub
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>5.6</strong> Wait for the calculations to complete…</p>
-<p><strong>5.7</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called optlog) and fails (failed folder)</p>
+<p><strong>6</strong> Wait for the calculations to complete…</p>
+<p><strong>7</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called optlog) and fails (failed folder)</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/move_complete.py
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>5.8</strong> Create NMR input files by running opt_to_nmr.py. This will also create a file called ‘population.txt’ containing conformer energies</p>
+<p><strong>8</strong> Create NMR input files by running opt_to_nmr.py. This will also create a file called ‘population.txt’ containing conformer energies</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/opt_to_nmr.py
 </pre></div>
 </div>
 </div></blockquote>
 <p>This will produce an nmrcom folder filled with .com files and .qsub file(‘s)</p>
-<p><strong>5.9</strong> Wait for the calculations to complete…</p>
-<p><strong>5.10</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called nmrlog) and fails (failed folder)</p>
+<p><strong>9</strong> Wait for the calculations to complete…</p>
+<p><strong>10</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called nmrlog) and fails (failed folder)</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/move_complete.py
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>5.11</strong> Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn’t deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers</p>
+<p><strong>11</strong> Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn’t deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/nmr_process.py
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>5.12</strong> Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called “Groups.txt” and make list of “your own label” - numbers of atoms that are equivalent (eg H’s on methyl groups) .</p>
+<p><strong>12</strong> Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called “Groups.txt” and make list of “your own label” - numbers of atoms that are equivalent (eg H’s on methyl groups) .</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is how you&#39;d make the .txt file in terminal, but you can do this with any word editor</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is how you&#39;d make the .txt file in terminal, but using notepad is fine</span>
 vim groups.txt
 <span class="c1"># Input all the equivalency eg</span>
 <span class="c1"># H1 - 72,73,74</span>
@@ -336,18 +337,13 @@ vim groups.txt
 <p class="caption"><span class="caption-text">Format for doing equivalency maths, note this molecule has C<sub>2</sub> symmetry</span></p>
 </div>
 </div></blockquote>
-<p><strong>5.13</strong> Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings &gt; 0.5 Hz and NOEs.</p>
+<p><strong>13</strong> Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings &gt; 0.5 Hz and NOEs.</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/nmr_process.py equiv
 </pre></div>
 </div>
 </div></blockquote>
-<p>End: Deal with failures by submitting manually</p>
-</div></blockquote>
-<hr class="docutils" />
-</div>
-<div class="section" id="install-on-grendel">
-<span id="install-grendel"></span><h2>Install on Grendel<a class="headerlink" href="#install-on-grendel" title="Permalink to this headline">¶</a></h2>
+<p><strong>Epilogue</strong> Deal with the failures in the failed file by resubmitting them manually</p>
 </div>
 <div class="section" id="faq">
 <span id="id3"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>

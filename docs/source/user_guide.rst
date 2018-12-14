@@ -108,119 +108,105 @@ Install on BlueCrystal3
         module load tools/git-2.18.0
         source activate myenv
 
-**5** Start using auto-ENRICH
+.. _run_bc3:
 
-  auto-ENRICH automates moving from a conformational search output to getting out NMR parameters. Save the output of your conformational search to one .xyz file (that contains lots of conformers) for a particular molecule
+Run on BlueCrystal3
+========================================
 
-  **5.1** Make a folder with the molecule name and put your .xyz file in it, cd into that folder
+auto-ENRICH automates moving from a conformational search output to getting out NMR parameters. Save the output of your conformational search to one .xyz file (that contains lots of conformers) for a particular molecule
 
-  **5.2** Copy the preferences file from the auto-ENRICH folder then open it and decide what you want to run. If the auto-ENRICH folder is 2 directories above your molecules folder (which you are now in) type:
+**1** Make a folder with the molecule name and put your .xyz file in it, cd into that folder
 
-     .. code-block:: bash
+**2** Copy the preferences file from the auto-ENRICH folder then open it and decide what you want to run. If the auto-ENRICH folder is 2 directories above your molecules folder (which you are now in) type:
 
-      cp -rf ../../auto-ENRICH/ENRICH.prefs ./
-      #The cp means copy, first place is where it's copying from,
-      #the other is where its copying to, your current directory
-      #If its more/less folders above use more/less ../'s before the auto-ENRICH
-      #This applies for all that follows
+   .. code-block:: bash
 
-
-  **5.3** Edit the preferences
-
-    .. code-block:: bash
-
-       vim ENRICH.prefs
-       #Press the i key then edit the file
-       :wq
-       #Save and then close the file
-
-  **5.4** Create geometry optimisation and frequency correction input files for Gaussian based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file
-
-     .. code-block:: bash
-
-        python ../../auto-ENRICH/RUN/xyz_to_opt.py
-
-  This will produce an optcom folder filled with .com files and .qsub file('s)
-
-  **5.5** Submit job files for optimisation and frequency correction (conformer relative energies)
-
-    .. code-block:: bash
-
-      qsub molecule1_NMR_0.qsub
-      #If you're submitting over 50 conformers you will have several of these to submitting
-      qsub molecule1_NMR_1.qsub
-      qsub molecule1_NMR_2.qsub
-      # ... ... ...
-
-  **5.6** Wait for the calculations to complete...
-
-  **5.7** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called optlog) and fails (failed folder)
-
-    .. code-block:: bash
-
-      python ../../auto-ENRICH/RUN/move_complete.py
-
-  **5.8** Create NMR input files by running opt_to_nmr.py. This will also create a file called 'population.txt' containing conformer energies
-
-    .. code-block:: bash
-
-      python ../../auto-ENRICH/RUN/opt_to_nmr.py
-
-  This will produce an nmrcom folder filled with .com files and .qsub file('s)
-
-  **5.9** Wait for the calculations to complete...
-
-  **5.10** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called nmrlog) and fails (failed folder)
-
-    .. code-block:: bash
-
-      python ../../auto-ENRICH/RUN/move_complete.py
-
-  **5.11** Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn't deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers
-
-    .. code-block:: bash
-
-      python ../../auto-ENRICH/RUN/nmr_process.py
-
-  **5.12** Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
-
-    .. code-block:: bash
-
-      # This is how you'd make the .txt file in terminal, but you can do this with any word editor
-      vim groups.txt
-      # Input all the equivalency eg
-      # H1 - 72,73,74
-      :wq
-      # save and close file
-
-    .. figure::  _static/equiv.png
-
-       Format for doing equivalency maths, note this molecule has C\ :sub:`2`\  symmetry
-
-  **5.13** Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings > 0.5 Hz and NOEs.
-
-    .. code-block:: bash
-
-      python ../../auto-ENRICH/RUN/nmr_process.py equiv
+    cp -rf ../../auto-ENRICH/ENRICH.prefs ./
+    #The cp means copy, first place is where it's copying from,
+    #the other is where its copying to, your current directory
+    #If its more/less folders above use more/less ../'s before the auto-ENRICH
+    #This applies for all that follows
 
 
+**3** Edit the preferences
 
+  .. code-block:: bash
 
-  End: Deal with failures by submitting manually
+     vim ENRICH.prefs
+     #Press the i key then edit the file
+     :wq
+     #Save and then close the file
 
+**4** Create geometry optimisation and frequency correction input files for Gaussian based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file
 
+   .. code-block:: bash
 
+      python ../../auto-ENRICH/RUN/xyz_to_opt.py
 
+This will produce an optcom folder filled with .com files and .qsub file('s)
 
---------------------------------
+**5** Submit job files for optimisation and frequency correction (conformer relative energies)
 
-.. _install_grendel:
+  .. code-block:: bash
 
-Install on Grendel
-====================================
+    qsub molecule1_NMR_0.qsub
+    #If you're submitting over 50 conformers you will have several of these to submitting
+    qsub molecule1_NMR_1.qsub
+    qsub molecule1_NMR_2.qsub
+    # ... ... ...
 
+**6** Wait for the calculations to complete...
 
+**7** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called optlog) and fails (failed folder)
 
+  .. code-block:: bash
+
+    python ../../auto-ENRICH/RUN/move_complete.py
+
+**8** Create NMR input files by running opt_to_nmr.py. This will also create a file called 'population.txt' containing conformer energies
+
+  .. code-block:: bash
+
+    python ../../auto-ENRICH/RUN/opt_to_nmr.py
+
+This will produce an nmrcom folder filled with .com files and .qsub file('s)
+
+**9** Wait for the calculations to complete...
+
+**10** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called nmrlog) and fails (failed folder)
+
+  .. code-block:: bash
+
+    python ../../auto-ENRICH/RUN/move_complete.py
+
+**11** Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn't deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers
+
+  .. code-block:: bash
+
+    python ../../auto-ENRICH/RUN/nmr_process.py
+
+**12** Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
+
+  .. code-block:: bash
+
+    # This is how you'd make the .txt file in terminal, but using notepad is fine
+    vim groups.txt
+    # Input all the equivalency eg
+    # H1 - 72,73,74
+    :wq
+    # save and close file
+
+  .. figure::  _static/equiv.png
+
+     Format for doing equivalency maths, note this molecule has C\ :sub:`2`\  symmetry
+
+**13** Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings > 0.5 Hz and NOEs.
+
+  .. code-block:: bash
+
+    python ../../auto-ENRICH/RUN/nmr_process.py equiv
+
+**Epilogue** Deal with the failures in the failed file by resubmitting them manually
 
 
 .. _faq:
