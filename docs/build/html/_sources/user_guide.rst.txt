@@ -69,7 +69,7 @@ Install on BlueCrystal3
 
       .. code-block:: bash
 
-        vim .ssh/id_dsa.pub
+        vim ~/.ssh/id_dsa.pub
 
       .. figure::  _static/sshkey.png
 
@@ -291,11 +291,11 @@ This is very similar to installing on BlueCrystal but with some slight differenc
 
 **3** Set up Github and get a copy of auto-ENRICH:
 
-   **3.1** Find your ssh key, we do this by first going to your home folder in grendel then opening .ssh/id_dsa.pub (a text file) containing your key
+   **3.1** Find your ssh key, we do this by first going to your home folder in grendel then opening .ssh/id_rsa.pub (a text file) containing your key
 
       .. code-block:: bash
 
-        vim .ssh/id_dsa.pub
+        vim .ssh/id_rsa.pub
 
       .. figure::  _static/sshkey.png
 
