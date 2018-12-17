@@ -314,13 +314,7 @@ This is very similar to installing on BlueCrystal but with some slight differenc
 
          Navigate through github.com to input ssh key
 
-   **3.4** Enable git
-
-      .. code-block:: bash
-
-         module load tools/git-2.18.0
-
-   **3.5** Copy auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files
+   **3.4** Copy auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files
 
       .. code-block:: bash
 
@@ -338,8 +332,6 @@ This is very similar to installing on BlueCrystal but with some slight differenc
 
       .. code-block:: bash
 
-        module load languages/python-anaconda-5.0.1-2.7
-        module load tools/git-2.18.0
         source activate myenv
 
 
@@ -456,6 +448,26 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s)
     python ../../auto-ENRICH/RUN/nmr_process.py equiv
 
 **Epilogue** Deal with the failures in the failed folder by resubmitting them manually, talk to someone with more experience + read FAQ
+
+.. _misc_user_guide:
+
+Miscellaneous
+=============================
+
+If you wish to get the latest version of auto-ENRICH type
+
+  .. code-block:: bash
+
+    cd
+    # Moves you to your home folder
+    cd auto-ENRICH
+    # Moves you into the auto-ENRICH folder
+    bash auto-ENRICH/RUN/check_library.sh
+
+
+
+
+
 
 .. _faq:
 

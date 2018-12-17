@@ -86,6 +86,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#run-on-bluecrystal3">Run on BlueCrystal3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-on-grendel">Install on Grendel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#run-on-grendel">Run on Grendel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
@@ -448,13 +449,7 @@ conda install -n myenv numpy scipy
 <p class="caption"><span class="caption-text">Navigate through github.com to input ssh key</span></p>
 </div>
 </div></blockquote>
-<p><strong>3.4</strong> Enable git</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load tools/git-2.18.0
-</pre></div>
-</div>
-</div></blockquote>
-<p><strong>3.5</strong> Copy auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files</p>
+<p><strong>3.4</strong> Copy auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
 </pre></div>
@@ -471,9 +466,7 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>4.2</strong> Tell grendel to automatically load python and git and then activate your conda environment.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load languages/python-anaconda-5.0.1-2.7
-module load tools/git-2.18.0
-<span class="nb">source</span> activate myenv
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate myenv
 </pre></div>
 </div>
 </div></blockquote>
@@ -585,6 +578,19 @@ vim groups.txt
 </div>
 </div></blockquote>
 <p><strong>Epilogue</strong> Deal with the failures in the failed folder by resubmitting them manually, talk to someone with more experience + read FAQ</p>
+</div>
+<div class="section" id="miscellaneous">
+<span id="misc-user-guide"></span><h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to get the latest version of auto-ENRICH type</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
+<span class="c1"># Moves you to your home folder</span>
+<span class="nb">cd</span> auto-ENRICH
+<span class="c1"># Moves you into the auto-ENRICH folder</span>
+bash auto-ENRICH/RUN/check_library.sh
+</pre></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="faq">
 <span id="id4"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
