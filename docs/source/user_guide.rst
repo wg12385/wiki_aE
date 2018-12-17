@@ -314,13 +314,7 @@ This is very similar to installing on BlueCrystal but with some slight differenc
 
          Navigate through github.com to input ssh key
 
-   **3.4** Enable git
-
-      .. code-block:: bash
-
-         module load tools/git-2.18.0
-
-   **3.5** Copy auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files
+   **3.4** Copy auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files
 
       .. code-block:: bash
 
@@ -338,8 +332,6 @@ This is very similar to installing on BlueCrystal but with some slight differenc
 
       .. code-block:: bash
 
-        module load languages/python-anaconda-5.0.1-2.7
-        module load tools/git-2.18.0
         source activate myenv
 
 
