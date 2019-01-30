@@ -169,6 +169,20 @@
 </pre></div>
 </div>
 </div></blockquote>
+<dl class="docutils">
+<dt>Must learn basic linux commands,</dt>
+<dd><div class="first last highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">pwd</span>
+<span class="c1"># prints the current folder you&#39;re in</span>
+ls
+<span class="c1"># List folders in your current directory (directory is a fancier name for folder)</span>
+<span class="nb">cd</span> folder_name
+<span class="c1"># Moves you into the folder called folder_name (assuming that in your current directory)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>When you run the later commands you need to make sure you’re running them from a particular folder you’ve set up for the molecules</p>
+<p>auto-ENRICH is a set of python scripts to assist you in extracting and computing NMR parameters and conformer energies from molecular mechanics results using Gaussian. Find out what Gaussian is if you don’t know.</p>
 </div>
 <div class="section" id="install-on-bluecrystal3">
 <span id="install-bc3"></span><h2>Install on BlueCrystal3<a class="headerlink" href="#install-on-bluecrystal3" title="Permalink to this headline">¶</a></h2>
@@ -243,7 +257,7 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>3.5</strong> Copy auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules -b release_1 git@github.com:wg12385/auto-ENRICH.git
 </pre></div>
 </div>
 </div></blockquote>
@@ -350,7 +364,7 @@ qsub molecule1_NMR_2.qsub
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>13</strong> Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called “Groups.txt” and make list of “your own label” - numbers of atoms that are equivalent (eg H’s on methyl groups) .</p>
+<p><strong>13</strong> Produce equivalency file: Open one of the conformers from your original input .xyz in Maestro (or PyMol or any xyz viewer) (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called “Groups.txt” and make list of “your own label” - numbers of atoms that are equivalent (eg H’s on methyl groups) .</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is how you&#39;d make the .txt file in terminal, but using notepad is fine</span>
 vim groups.txt
@@ -451,7 +465,7 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>3.4</strong> Copy auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules -b release_1 git@github.com:wg12385/auto-ENRICH.git
 </pre></div>
 </div>
 </div></blockquote>
@@ -559,9 +573,9 @@ bash molecule1_NMR_2.qsub
 <p><strong>13</strong> Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called “Groups.txt” and make list of “your own label” - numbers of atoms that are equivalent (eg H’s on methyl groups) .</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is how you&#39;d make the .txt file in terminal, but using notepad is fine</span>
-vim groups.txt
+vim Groups.txt
 <span class="c1"># Input all the equivalency eg</span>
-<span class="c1"># H1 - 72,73,74</span>
+<span class="c1"># H1 - 72,73,74 (no gaps between numbers and commas)</span>
 :wq
 <span class="c1"># save and close file</span>
 </pre></div>
@@ -642,6 +656,7 @@ bash auto-ENRICH/RUN/check_library.sh
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
 
   
