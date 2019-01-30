@@ -19,6 +19,21 @@ Commands you need to type into your terminal window (after logging in to BlueCry
     # Then press enter to run command
     # Helpful extra instructions, do not type this into the terminal window
 
+Must learn basic linux commands,
+   .. code-block:: bash
+
+     pwd
+     # prints the current folder you're in
+     ls
+     # List folders in your current directory (directory is a fancier name for folder)
+     cd folder_name
+     # Moves you into the folder called folder_name (assuming that in your current directory)
+
+When you run the later commands you need to make sure you're running them from a particular folder you've set up for the molecules
+
+auto-ENRICH is a set of python scripts to assist you in extracting and computing NMR parameters and conformer energies from molecular mechanics results using Gaussian. Find out what Gaussian is if you don't know.
+
+
 
 .. _install_bc3:
 
@@ -98,7 +113,7 @@ Install on BlueCrystal3
 
       .. code-block:: bash
 
-        git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
+        git clone --recurse-submodules -b release_1 git@github.com:wg12385/auto-ENRICH.git
 
 **4** Automatically set up things so when you log in to be able to run auto-ENRICH. If you don't want to do this type the commands in step **4.2** into your terminal everytime you want to run auto-ENRICH
 
@@ -209,7 +224,7 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s)
 
     python ../../auto-ENRICH/RUN/nmr_process.py
 
-**13** Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
+**13** Produce equivalency file: Open one of the conformers from your original input .xyz in Maestro (or PyMol or any xyz viewer) (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
 
   .. code-block:: bash
 
@@ -318,7 +333,7 @@ This is very similar to installing on BlueCrystal but with some slight differenc
 
       .. code-block:: bash
 
-        git clone --recurse-submodules git@github.com:wg12385/auto-ENRICH.git
+        git clone --recurse-submodules -b release_1 git@github.com:wg12385/auto-ENRICH.git
 
 **4** Automatically set up things so when you log in to be able to run auto-ENRICH. If you don't want to do this type the commands in step **4.2** into your terminal everytime you want to run auto-ENRICH
 
@@ -431,9 +446,9 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s)
   .. code-block:: bash
 
     # This is how you'd make the .txt file in terminal, but using notepad is fine
-    vim groups.txt
+    vim Groups.txt
     # Input all the equivalency eg
-    # H1 - 72,73,74
+    # H1 - 72,73,74 (no gaps between numbers and commas)
     :wq
     # save and close file
 
