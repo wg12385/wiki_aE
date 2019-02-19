@@ -175,6 +175,11 @@ NOE averaging (r^-6 / r^-3)</p>
 <div class="figure">
 <img alt="_images/concept_workflow.png" src="_images/concept_workflow.png" />
 </div>
+<p>Specific Workflow:
+We generate lots of structures by random torsions then minimise them using MM as it’s fast in an attempt to find reasonable approximations of all the conformers of the molecule. We then put a subset of these MM minimised structures to get a better approximation of the energy from DFT (workflow below uses a ‘cheap’ and ‘expensive’ DFT) then calculate the NMR parameters (also by DFT)</p>
+<div class="figure">
+<img alt="_images/workflow_specific.png" src="_images/workflow_specific.png" />
+</div>
 <p>What is MM? (Not explicity part of auto-ENRICH but the structures we use as start points for DFT optimisations are from MM):</p>
 <div class="figure">
 <img alt="_images/mm.png" src="_images/mm.png" />
