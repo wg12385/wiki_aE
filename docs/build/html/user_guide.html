@@ -337,7 +337,7 @@ module load tools/git-2.18.0
 </div>
 </div></blockquote>
 <p>This will produce an optcom folder filled with .com files and .qsub file(‘s)
-What auto-ENRICH has done is make a load of input files (for each conformer in the .xyz file) for Gaussian to run saying ‘do a geometry optimisation (and then frequency calculation) based on the preferences we put in ENRICH.prefs’
+What auto-ENRICH has done is make a load of input files (for each structure in the .xyz file) for Gaussian to run saying ‘do a geometry optimisation (and then frequency calculation) with this starting structure based on the preferences we put in ENRICH.prefs’
 The com files are the just Gaussian input files. The qsub file is so you can submit those gaussian com files as jobs on BlueCrystal.</p>
 <p>Please open and look at a couple of the optcom files to see what Gaussian input files look like and that you understand what (most) of the lines of the input file actually means.
 Also have a look at the .qsub file, try understand what it’s doing.</p>
@@ -374,6 +374,8 @@ qstat -nu &lt;username&gt; -t
 </pre></div>
 </div>
 </div></blockquote>
+<p>This will produce an nmrcom folder filled with .com files and .qsub file(‘s) similar to before.
+There will be a redundant conformer elimination (with the threshold you’ve specified in ENRICH.prefs) to see if any of the structures you have optimised from your .xyz file have converged to the same conformer (Note: Conformers are energy minima, you submitted energy minima based off of molecular mechanics, these are not be minima by DFT, you have submitted .xyz files with are molecular mechanics conformers as (hopefully) good start points for finding DFT conformers [for a particular basis set, functional, grid etc.]). You should open the .xyz file produced in the new ‘OUTPUT’ folder (ideally in Maestro) to check the threshold is appropriate and that we’ve actually removed all duplicates and not just very similar conformers, you should adjust the threshold accordingly.</p>
 <p>This will produce an nmrcom folder filled with .com files and .qsub file(‘s) just like optimisation did</p>
 <p><strong>9</strong> Submit job files for NMR parameter calculation</p>
 <blockquote>
@@ -584,7 +586,8 @@ qstat -nu &lt;username&gt; -t
 </pre></div>
 </div>
 </div></blockquote>
-<p>This will produce an nmrcom folder filled with .com files and .qsub file(‘s)</p>
+<p>This will produce an nmrcom folder filled with .com files and .qsub file(‘s)
+There will be a redundant conformer elimination (with the threshold you’ve specified in ENRICH.prefs) to see if any of the structures you have optimised from your .xyz file have converged to the same conformer (Note: Conformers are energy minima, you submitted energy minima based off of molecular mechanics, these are not be minima by DFT, you have submitted .xyz files with are molecular mechanics conformers as (hopefully) good start points for finding DFT conformers [for a particular basis set, functional, grid etc.]). You should open the .xyz file produced in the new ‘OUTPUT’ folder (ideally in Maestro) to check the threshold is appropriate and that we’ve actually removed all duplicates and not just very similar conformers, you should adjust the threshold accordingly.</p>
 <p><strong>9</strong> Submit job files for NMR parameter calculation</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash molecule1_NMR_0.qsub
@@ -633,16 +636,6 @@ vim Groups.txt
 </div>
 <div class="section" id="miscellaneous">
 <span id="misc-user-guide"></span><h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
-<p>If you wish to get the latest version of auto-ENRICH type</p>
-<blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span>
-<span class="c1"># Moves you to your home folder</span>
-<span class="nb">cd</span> auto-ENRICH
-<span class="c1"># Moves you into the auto-ENRICH folder</span>
-bash auto-ENRICH/RUN/check_library.sh
-</pre></div>
-</div>
-</div></blockquote>
 </div>
 <div class="section" id="faq">
 <span id="id4"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>

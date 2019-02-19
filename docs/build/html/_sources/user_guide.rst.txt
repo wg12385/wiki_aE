@@ -97,7 +97,7 @@ Install on BlueCrystal3
    **3.2** Copy the key (all that text) then exit vim
 
       .. code-block:: bash
-      
+
         (Esc key)
         :q!
         # Closes file (without editing), this is basic use of vim, you should understand this.
@@ -194,7 +194,7 @@ auto-ENRICH automates moving from a conformational search output to getting out 
       python ~/auto-ENRICH/RUN/xyz_to_opt.py
 
 This will produce an optcom folder filled with .com files and .qsub file('s)
-What auto-ENRICH has done is make a load of input files (for each conformer in the .xyz file) for Gaussian to run saying 'do a geometry optimisation (and then frequency calculation) based on the preferences we put in ENRICH.prefs'
+What auto-ENRICH has done is make a load of input files (for each structure in the .xyz file) for Gaussian to run saying 'do a geometry optimisation (and then frequency calculation) with this starting structure based on the preferences we put in ENRICH.prefs'
 The com files are the just Gaussian input files. The qsub file is so you can submit those gaussian com files as jobs on BlueCrystal.
 
 Please open and look at a couple of the optcom files to see what Gaussian input files look like and that you understand what (most) of the lines of the input file actually means.
@@ -233,6 +233,10 @@ Each .qsub file submits 50 (or less) of the Gaussian input files (.com's) as job
   .. code-block:: bash
 
     python ../../auto-ENRICH/RUN/opt_to_nmr.py
+
+This will produce an nmrcom folder filled with .com files and .qsub file('s) similar to before.
+There will be a redundant conformer elimination (with the threshold you've specified in ENRICH.prefs) to see if any of the structures you have optimised from your .xyz file have converged to the same conformer (Note: Conformers are energy minima, you submitted energy minima based off of molecular mechanics, these are not be minima by DFT, you have submitted .xyz files with are molecular mechanics conformers as (hopefully) good start points for finding DFT conformers [for a particular basis set, functional, grid etc.]). You should open the .xyz file produced in the new 'OUTPUT' folder (ideally in Maestro) to check the threshold is appropriate and that we've actually removed all duplicates and not just very similar conformers, you should adjust the threshold accordingly.
+
 
 This will produce an nmrcom folder filled with .com files and .qsub file('s) just like optimisation did
 
@@ -456,6 +460,7 @@ This will produce an optcom folder filled with .com files and .qsub file('s)
     python ../../auto-ENRICH/RUN/opt_to_nmr.py
 
 This will produce an nmrcom folder filled with .com files and .qsub file('s)
+There will be a redundant conformer elimination (with the threshold you've specified in ENRICH.prefs) to see if any of the structures you have optimised from your .xyz file have converged to the same conformer (Note: Conformers are energy minima, you submitted energy minima based off of molecular mechanics, these are not be minima by DFT, you have submitted .xyz files with are molecular mechanics conformers as (hopefully) good start points for finding DFT conformers [for a particular basis set, functional, grid etc.]). You should open the .xyz file produced in the new 'OUTPUT' folder (ideally in Maestro) to check the threshold is appropriate and that we've actually removed all duplicates and not just very similar conformers, you should adjust the threshold accordingly.
 
 **9** Submit job files for NMR parameter calculation
 
@@ -509,15 +514,7 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s)
 Miscellaneous
 =============================
 
-If you wish to get the latest version of auto-ENRICH type
 
-  .. code-block:: bash
-
-    cd
-    # Moves you to your home folder
-    cd auto-ENRICH
-    # Moves you into the auto-ENRICH folder
-    bash auto-ENRICH/RUN/check_library.sh
 
 
 
