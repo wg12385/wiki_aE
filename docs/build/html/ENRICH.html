@@ -80,14 +80,15 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Gaussian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gaussian.html#bluecrystal">BlueCrystal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Interpreting Gaussian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html#interpreting-bluecrystal">Interpreting BlueCrystal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ENRICH</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#theoretical-basis-for-calculating-nmr-properties">Theoretical basis for calculating NMR properties</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#averaging-for-equivalency">Averaging for equivalency</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#concept">Concept</a></li>
 </ul>
 
             
@@ -162,6 +163,32 @@
 <span id="ave-for-equiv"></span><h2>Averaging for equivalency<a class="headerlink" href="#averaging-for-equivalency" title="Permalink to this headline">¶</a></h2>
 <p>Chemical shift averaging
 NOE averaging (r^-6 / r^-3)</p>
+</div>
+</div>
+<div class="section" id="concept">
+<h1>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h1>
+<p>What we see by NMR is a boltzmann average over NMR timescales:</p>
+<div class="figure">
+<img alt="_images/concept_ave.png" src="_images/concept_ave.png" />
+</div>
+<p>Conceptual Workflow:</p>
+<div class="figure">
+<img alt="_images/concept_workflow.png" src="_images/concept_workflow.png" />
+</div>
+<p>What is MM? (Not explicity part of auto-ENRICH but the structures we use as start points for DFT optimisations are from MM):</p>
+<div class="figure">
+<img alt="_images/mm.png" src="_images/mm.png" />
+</div>
+<p>What is DFT?:</p>
+<div class="figure">
+<img alt="_images/concept_dft.png" src="_images/concept_dft.png" />
+</div>
+<p>Solvents in DFT, explicit then implicit. We always do implicit as explicit is too costly though we lose all localised effects such as hydrogen bonding. Also means that the chemical shifts of a proton that interacts with solvent is nonsense (You should do redundant conformer elimination on H’s on alcohols and amines, ask someone why if you don’t understand why)</p>
+<div class="figure">
+<img alt="_images/concept_exp_solv.png" src="_images/concept_exp_solv.png" />
+</div>
+<div class="figure">
+<img alt="_images/concept_imp_solv.png" src="_images/concept_imp_solv.png" />
 </div>
 </div>
 
