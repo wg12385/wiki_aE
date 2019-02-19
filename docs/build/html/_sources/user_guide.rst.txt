@@ -53,26 +53,26 @@ Install on BlueCrystal3
         cd
         # This moves you to your home directory
 
-    **2.1** Load the conda module
+    **2.1** Load the conda module. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use. Top keep track of all the modules we load them into a particular 'environment'
 
       .. code-block:: bash
 
         module load languages/python-anaconda-5.0.1-2.7
 
-    **2.2** Create a conda environment
+    **2.2** Create an environment (Basically just a list of the modules we want to use, The piece of software we use Anaconda (conda for short) will load them every time you activate that environment) using Anaconda. We're going to name the environment 'myenv' for simplicity
 
       .. code-block:: bash
 
         conda create --name myenv
 
-    **2.3** Install openbabel and numpy
+    **2.3** Install modules to the environment we just created. We want to install openbabel and numpy. Numpy and SciPy are python modules that allows us maths easily in Python, while OpenBabel is a chemistry related module. The auto-ENRICH scripts use these modules.
 
       .. code-block:: bash
 
         conda install -c openbabel -n myenv openbabel
         conda install -n myenv numpy scipy
 
-    **2.4** Activate the environment you just made, this should put add "(myenv)" to the far left of where you input Commands
+    **2.4** Activate the environment you just made, this should put add "(myenv)" to the far left of where you input commands
 
       .. code-block:: bash
 
@@ -80,11 +80,12 @@ Install on BlueCrystal3
 
 **3** Set up Github and get a copy of auto-ENRICH:
 
-   **3.1** Find your ssh key, we do this by first going to your home folder in BlueCrystal then opening .ssh/id_dsa.pub (a text file) containing your key
+   **3.1** On BlueCrystal: Find your ssh key, we do this by first going to your home folder in BlueCrystal then opening .ssh/id_dsa.pub (a text file) containing your key. vim is a very simple text editing package, you should know how to use it, if not please search vim and learn.
 
       .. code-block:: bash
 
         vim ~/.ssh/id_dsa.pub
+        # vim bit at the start means use vim (text editing package) to open the file ~/blah. The ~/ is linux shorthand for your 'root' directory (the one you move to when you cd, it's basically your home folder. If you don't know what cd does, please go back to start and do a Linux tutorial).
 
       .. figure::  _static/sshkey.png
 
@@ -95,25 +96,32 @@ Install on BlueCrystal3
       .. code-block:: bash
 
         :q!
-        # Close file
+        # Close file, this is basic use of vim, you should understand this.
 
-   **3.3** Login to Github.com then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3
+   **3.3** On Normal Computer: Login to Github.com (after making an account) then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3. Github is a website that we store our auto-ENRICH code on, by giving it your SSH key we are allowing your BlueCrystal account to access your Github account.
 
       .. figure::  _static/ssh_github.png
 
          Navigate through github.com to input ssh key
 
-   **3.4** Enable git
+   **3.4** On BlueCrystal: Enable git
 
       .. code-block:: bash
 
          module load tools/git-2.18.0
 
-   **3.5** Copy auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files
+   **3.5** On BlueCrystal: Copy the auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files.
 
       .. code-block:: bash
 
         git clone --recurse-submodules -b release_1 git@github.com:wg12385/auto-ENRICH.git
+
+  **Note** We've done all this rather than just copying a folder 'normally' to your BlueCrystal account because Github is special. If auto-ENRICH is updated to fix bugs and add functionality you can update your version by cd'ing into the auto-ENRICH folder and typing:
+
+      .. code-block:: bash
+
+        git pull --recurse-submodules -b  origin release_1
+        # Double check you're actually in your auto-ENRICH folder, use 'pwd' to double check (basic linux, please learn.)
 
 **4** Automatically set up things so when you log in to be able to run auto-ENRICH. If you don't want to do this type the commands in step **4.2** into your terminal everytime you want to run auto-ENRICH
 

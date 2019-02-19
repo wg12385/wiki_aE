@@ -197,26 +197,26 @@ ls
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>2.1</strong> Load the conda module</p>
+<p><strong>2.1</strong> Load the conda module. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use. Top keep track of all the modules we load them into a particular ‘environment’</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load languages/python-anaconda-5.0.1-2.7
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>2.2</strong> Create a conda environment</p>
+<p><strong>2.2</strong> Create an environment (Basically just a list of the modules we want to use, The piece of software we use Anaconda (conda for short) will load them every time you activate that environment) using Anaconda. We’re going to name the environment ‘myenv’ for simplicity</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name myenv
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>2.3</strong> Install openbabel and numpy</p>
+<p><strong>2.3</strong> Install modules to the environment we just created. We want to install openbabel and numpy. Numpy and SciPy are python modules that allows us maths easily in Python, while OpenBabel is a chemistry related module. The auto-ENRICH scripts use these modules.</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c openbabel -n myenv openbabel
 conda install -n myenv numpy scipy
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>2.4</strong> Activate the environment you just made, this should put add “(myenv)” to the far left of where you input Commands</p>
+<p><strong>2.4</strong> Activate the environment you just made, this should put add “(myenv)” to the far left of where you input commands</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> activate myenv
 </pre></div>
@@ -225,9 +225,11 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>3</strong> Set up Github and get a copy of auto-ENRICH:</p>
 <blockquote>
-<div><p><strong>3.1</strong> Find your ssh key, we do this by first going to your home folder in BlueCrystal then opening .ssh/id_dsa.pub (a text file) containing your key</p>
+<div><blockquote>
+<div><p><strong>3.1</strong> On BlueCrystal: Find your ssh key, we do this by first going to your home folder in BlueCrystal then opening .ssh/id_dsa.pub (a text file) containing your key. vim is a very simple text editing package, you should know how to use it, if not please search vim and learn.</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim ~/.ssh/id_dsa.pub
+<span class="c1"># vim bit at the start means use vim (text editing package) to open the file ~/blah. The ~/ is linux shorthand for your &#39;root&#39; directory (the one you move to when you cd, it&#39;s basically your home folder. If you don&#39;t know what cd does, please go back to start and do a Linux tutorial).</span>
 </pre></div>
 </div>
 <div class="figure" id="id5">
@@ -238,26 +240,34 @@ conda install -n myenv numpy scipy
 <p><strong>3.2</strong> Copy the key (all that text) then type :q! to exit</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>:q!
-<span class="c1"># Close file</span>
+<span class="c1"># Close file, this is basic use of vim, you should understand this.</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>3.3</strong> Login to Github.com then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3</p>
+<p><strong>3.3</strong> On Normal Computer: Login to Github.com (after making an account) then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3. Github is a website that we store our auto-ENRICH code on, by giving it your SSH key we are allowing your BlueCrystal account to access your Github account.</p>
 <blockquote>
 <div><div class="figure" id="id6">
 <img alt="_images/ssh_github.png" src="_images/ssh_github.png" />
 <p class="caption"><span class="caption-text">Navigate through github.com to input ssh key</span></p>
 </div>
 </div></blockquote>
-<p><strong>3.4</strong> Enable git</p>
+<p><strong>3.4</strong> On BlueCrystal: Enable git</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load tools/git-2.18.0
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>3.5</strong> Copy auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files</p>
+<p><strong>3.5</strong> On BlueCrystal: Copy the auto-ENRICH files, it’ll make a folder called auto-ENRICH containing all the files.</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone --recurse-submodules -b release_1 git@github.com:wg12385/auto-ENRICH.git
+</pre></div>
+</div>
+</div></blockquote>
+</div></blockquote>
+<p><strong>Note</strong> We’ve done all this rather than just copying a folder ‘normally’ to your BlueCrystal account because Github is special. If auto-ENRICH is updated to fix bugs and add functionality you can update your version by cd’ing into the auto-ENRICH folder and typing:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull --recurse-submodules -b  origin release_1
+<span class="c1"># Double check you&#39;re actually in your auto-ENRICH folder, use &#39;pwd&#39; to double check (basic linux, please learn.)</span>
 </pre></div>
 </div>
 </div></blockquote>
