@@ -28,3 +28,11 @@ Answer: Resubmit file
 
 Interpretation of log files
 =============================
+
+
+
+***************
+BlueCrystal
+***************
+
+Walltime - How long you've given the job to complete. If the job overruns this time BlueCrystal will terminate the job unfinished. 

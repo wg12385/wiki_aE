@@ -19,7 +19,7 @@ Commands you need to type into your terminal window (after logging in to BlueCry
     # Then press enter to run command
     # Helpful extra instructions, do not type this into the terminal window
 
-Must learn basic linux commands,
+Must learn basic unix commands,
    .. code-block:: bash
 
      pwd
@@ -33,6 +33,9 @@ When you run the later commands you need to make sure you're running them from a
 
 auto-ENRICH is a set of python scripts to assist you in extracting and computing NMR parameters and conformer energies from molecular mechanics results using Gaussian. Find out what Gaussian is if you don't know.
 
+BlueCrystal is a computing cluster. A room full of computers you can get to do calculations for you. We make Gaussian input files (.com files) specifying a certain thing we want Gaussian to do then submit them to BlueCrystal for random computers in the BlueCrystal to run and give back the answers. For reference your computer (probably) has 4 cores, on BlueCrystal you can sometimes use up to 400 cores at once. Running DFT is computationally very expensive so doing it on your personal laptop would take forever - hence we use BlueCrystal.
+
+We'd recommend you use Maestro (the free academic license version, most up to date version please) to view molecules. The .xyz files generated in some of auto-ENRICH should be draggable directly into Maestro to view.
 
 
 .. _install_bc3:
@@ -51,7 +54,7 @@ Install on BlueCrystal3
       .. code-block:: bash
 
         cd
-        # This moves you to your home directory
+        # This moves you to your home directory, this is basic unix command line, please learn.
 
     **2.1** Load the conda module. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use. Top keep track of all the modules we load them into a particular 'environment'
 
@@ -85,18 +88,19 @@ Install on BlueCrystal3
       .. code-block:: bash
 
         vim ~/.ssh/id_dsa.pub
-        # vim bit at the start means use vim (text editing package) to open the file ~/blah. The ~/ is linux shorthand for your 'root' directory (the one you move to when you cd, it's basically your home folder. If you don't know what cd does, please go back to start and do a Linux tutorial).
+        # vim bit at the start means use vim (text editing package) to open the file ~/blah. The ~/ is unix command line shorthand for your 'root' directory (the one you move to when you cd, it's basically your home folder. If you don't know what cd does, please go back to start and do a unix command line tutorial).
 
       .. figure::  _static/sshkey.png
 
         Example ssh key
 
-   **3.2** Copy the key (all that text) then type :q! to exit
+   **3.2** Copy the key (all that text) then exit vim
 
       .. code-block:: bash
-
+      
+        (Esc key)
         :q!
-        # Close file, this is basic use of vim, you should understand this.
+        # Closes file (without editing), this is basic use of vim, you should understand this.
 
    **3.3** On Normal Computer: Login to Github.com (after making an account) then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3. Github is a website that we store our auto-ENRICH code on, by giving it your SSH key we are allowing your BlueCrystal account to access your Github account.
 
@@ -110,7 +114,7 @@ Install on BlueCrystal3
 
          module load tools/git-2.18.0
 
-   **3.5** On BlueCrystal: Copy the auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files.
+   **3.5** Copy the auto-ENRICH files, it'll make a folder called auto-ENRICH containing all the files.
 
       .. code-block:: bash
 
@@ -120,43 +124,55 @@ Install on BlueCrystal3
 
       .. code-block:: bash
 
+        # Double check you're actually in your auto-ENRICH folder, use 'pwd' to double check (basic unix command line, please learn.) then
         git pull --recurse-submodules -b  origin release_1
-        # Double check you're actually in your auto-ENRICH folder, use 'pwd' to double check (basic linux, please learn.)
+        # This pulls the version of auto-ENRICH from GitHub we have called release_1 (You don't need to know about the recurse submodules bit)
 
-**4** Automatically set up things so when you log in to be able to run auto-ENRICH. If you don't want to do this type the commands in step **4.2** into your terminal everytime you want to run auto-ENRICH
+**4** Get BlueCrystal to automatically set up things for auto-ENRICH every time you log in BlueCrystal.
 
-  **4.1** Open .bashrc, this is a script that runs automatically when you log in to BlueCrystal3
-
-      .. code-block:: bash
-
-        vim .bashrc
-
-  **4.2** Tell BlueCrystal to automatically load python and git and then activate your conda environment.
+  **4.1** Open ~/.bashrc, this is a script that runs automatically when you log in to BlueCrystal3 (Just a unix command line thing, nothing to do with auto-ENRICH)
 
       .. code-block:: bash
 
+        vim ~/.bashrc
+        # Open the .bashrc file in vim (text editor)
+
+  **4.2** Tell BlueCrystal to automatically load python and Git and then activate your conda environment every time you log in by adding the following lines to .bashrc (file you just opened) at the bottom
+
+      .. code-block:: bash
+
+        (i key)
+        # pressing i key allows you to edit files in vim, you should know this, if you don't, look up a vim tutorial
+
+        #Add following lines to the file (at the bottom)
         module load languages/python-anaconda-5.0.1-2.7
         module load tools/git-2.18.0
         source activate myenv
+
+        # then exit vim, writing your changes to the file. Esc key exits the edit mode. The w is write, q is quit.
+        (Esc key)
+        :wq
+
 
 .. _run_bc3:
 
 Run on BlueCrystal3
 ========================================
 
-auto-ENRICH automates moving from a conformational search output to getting out NMR parameters. Save the output of your conformational search to one .xyz file (that contains lots of conformers) for a particular molecule
+auto-ENRICH automates moving from a conformational search output to getting out NMR parameters. Save the output of your conformational search to one .xyz file (that contains lots of conformers) for a particular molecule. We want to make a folder for each molecule which we then run the DFT for.
 
 **1** Make a folder with the molecule name and put your .xyz file in it, cd into that folder
 
-**2** Copy the preferences file from the auto-ENRICH folder then open it and decide what you want to run. If the auto-ENRICH folder is 2 directories above your molecules folder (which you are now in) type:
+**2** Copy the preferences file from the auto-ENRICH folder. This is a simple file where you can write all the exact parameters you want to do the DFT with (Functional, Basis set, Grid size, Convergence Criteria, Use of frequency calculation, Redundant conformer elimination options, blah....)
 
    .. code-block:: bash
 
-    cp -rf ../../auto-ENRICH/ENRICH.prefs ./
-    #The cp means copy, first place is where it's copying from,
-    #the other is where its copying to, your current directory
-    #If its more/less folders above use more/less ../'s before the auto-ENRICH
-    #This applies for all that follows
+    cp ~/auto-ENRICH/ENRICH.prefs ./
+    #The 'cp' is telling unix command line to copy then we put location of file we want to copy ('~/auto-ENRICH/ENRICH.prefs'),
+    # and then where we want to copy it to, in this case your current directory ('./')
+    # Again, unix command line tutorial.
+
+**2.0** Chat to someone about the parameters you should do your DFT with and find out what all the preferences in the ENRICH.prefs file actually means. Learn what DFT is.
 
 
 **3** Edit the preferences (for this particular molecules DFT), if you want to run all your calculations in a specific way then we suggest you edit ENRICH.prefs in the auto-ENRICH to your own personal preferences to save time in future
@@ -165,26 +181,38 @@ auto-ENRICH automates moving from a conformational search output to getting out 
 
      vim ENRICH.prefs
      # Press the i key then edit the file
-     :wq
-     # Save and then close the file
 
-**4** Create geometry optimisation and frequency correction input files for Gaussian based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file
+     # After editing...
+     (Esc key)
+     :wq
+     # This saves and closes the file
+
+**4** (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file
 
    .. code-block:: bash
 
-      python ../../auto-ENRICH/RUN/xyz_to_opt.py
+      python ~/auto-ENRICH/RUN/xyz_to_opt.py
 
 This will produce an optcom folder filled with .com files and .qsub file('s)
+What auto-ENRICH has done is make a load of input files (for each conformer in the .xyz file) for Gaussian to run saying 'do a geometry optimisation (and then frequency calculation) based on the preferences we put in ENRICH.prefs'
+The com files are the just Gaussian input files. The qsub file is so you can submit those gaussian com files as jobs on BlueCrystal.
 
-**5** Submit job files for optimisation and frequency correction (conformer relative energies)
+Please open and look at a couple of the optcom files to see what Gaussian input files look like and that you understand what (most) of the lines of the input file actually means.
+Also have a look at the .qsub file, try understand what it's doing.
+
+**5** Submit job files so BlueCrystal will run all the Gaussian submission files you've written. .qsub files are named after the .xyz file you started with so the below code is for if you have 'molecule1.xyz' as your conformer containing xyz file. If you've forgotten the name of your xyz file a simple 'ls' in the command window will show you (again basic cmd line unix)
 
   .. code-block:: bash
 
+    #
     qsub molecule1_OPT_0.qsub
-    #If you're submitting over 50 conformers you will have several of these to submitting
+    #If you're submitting over 50 conformers you will have several of these to submit
+    # qsub is the command (it means submit to the BlueCrystal queue) then the .qsub file is the file you want to submit
     qsub molecule1_OPT_1.qsub
     qsub molecule1_OPT_2.qsub
     # ... ... ...
+
+Each .qsub file submits 50 (or less) of the Gaussian input files (.com's) as jobs to run on the computing cluster (BlueCrystal) with a particular walltime, no. processors. Please find out what walltime means.
 
 **6** Wait for your calculations to complete..., You can check on their status on grendel (whether queueing/running, job which have finished will disappear)
 
@@ -192,7 +220,7 @@ This will produce an optcom folder filled with .com files and .qsub file('s)
 
     #To check on status of your calculations type
     qstat -nu <username> -t
-    # example username is sj18703
+    # example username is sj18703 it'd be qstat -nu sj18703 -t
 
 **7** Run move_complete.py to sort your calculations into successes (they'll be moved to a folder called optlog) and fails (failed folder)
 
@@ -200,13 +228,13 @@ This will produce an optcom folder filled with .com files and .qsub file('s)
 
     python ../../auto-ENRICH/RUN/move_complete.py
 
-**8** Create NMR input files by running opt_to_nmr.py. This will also create a file called 'population.txt' containing conformer energies
+**8** Create Gaussian NMR input files by running opt_to_nmr.py. This will also create a file called 'population_information.txt' containing conformer energies and populations
 
   .. code-block:: bash
 
     python ../../auto-ENRICH/RUN/opt_to_nmr.py
 
-This will produce an nmrcom folder filled with .com files and .qsub file('s)
+This will produce an nmrcom folder filled with .com files and .qsub file('s) just like optimisation did
 
 **9** Submit job files for NMR parameter calculation
 
@@ -214,6 +242,7 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s)
 
     qsub molecule1_NMR_0.qsub
     #If you're submitting over 50 conformers you will have several of these to submitting
+    # qsub is the command (it means submit to the BlueCrystal queue) then the .qsub file is the file you want to submit
     qsub molecule1_NMR_1.qsub
     qsub molecule1_NMR_2.qsub
     # ... ... ...
@@ -232,20 +261,23 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s)
 
     python ../../auto-ENRICH/RUN/nmr_process.py
 
-**13** Produce equivalency file: Open one of the conformers from your original input .xyz in Maestro (or PyMol or any xyz viewer) (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
+**13** Produce equivalency file: Open one of the conformers from your original input .xyz in Maestro (or PyMol or any xyz viewer), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
 
   .. code-block:: bash
 
-    # This is how you'd make the .txt file in terminal, but using notepad is fine
-    vim groups.txt
+    # This is how you'd make the .txt file using vim on BlueCrystal, but using Window notepad (on your own computer, not on BlueCrystal side) is fine
+    vim Groups.txt
+
     # Input all the equivalency eg
-    # H1 - 72,73,74
+    # H1 - 72,73,74 (No blank lines at the end please)
+
+    (Esc key)
     :wq
     # save and close file
 
   .. figure::  _static/equiv.png
 
-     Format for doing equivalency maths, note this molecule has C\ :sub:`2`\  symmetry
+     Format for doing equivalency maths, note this molecule has C\ :sub:`2`\  symmetry so has funky numbering
 
 **14** Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings > 0.5 Hz and NOEs.
 
