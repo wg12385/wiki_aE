@@ -1,16 +1,17 @@
 .. _gaussian:
 
 
-***************
-Gaussian
-***************
+***********************
+Interpreting Gaussian
+***********************
 
 .. _input_file_structure:
 
-Interpretation of input files
+Failed calculations
 =============================
 
-
+You should get a 'failed' folder after move_complete.py, vim the log files and find out what went wrong. Look at end of the log files for help with what went wrong. Common errors are in section below.
+(Hint: typing 'G' moves to bottom of file in vim, 'gg' moves to top)
 
 
 .. _common_errors:
@@ -18,17 +19,15 @@ Interpretation of input files
 Common errors
 =============================
 
-**galloc errors**
+**Galloc error**
 
 These mean someone on the node (physical computer your calculation is actually running on in the BlueCrystal computing cluster) has used up too much memory so your calculation doesn't have enough so has been killed midway through.
 
 Answer: Resubmit file
 
+**'Error termination in link 9999'**
 
-
-
-
-
+This (might) mean the structure hasn't optimised and as hit the max number of steps to converge to a minima. Several options for dealing with these. Have a chat with someone who seems to know what they're doing.
 
 
 
@@ -74,28 +73,8 @@ Line by line analysis:
   C  -0.075859    0.400972   -1.170889: C for Carbon, then x   y   z coordinates (origin is centre of mass for molecule generally, doesn't matter.)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-***************
-BlueCrystal
-***************
+***************************
+Interpreting BlueCrystal
+***************************
 
 Walltime - How long you've given the job to complete. If the job overruns this time BlueCrystal will terminate the job unfinished.
