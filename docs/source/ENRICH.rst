@@ -34,6 +34,12 @@ Conceptual Workflow:
 
 .. figure::  _static/concept_workflow.png
 
+Specific Workflow:
+We generate lots of structures by random torsions then minimise them using MM as it's fast in an attempt to find reasonable approximations of all the conformers of the molecule. We then put a subset of these MM minimised structures to get a better approximation of the energy from DFT (workflow below uses a 'cheap' and 'expensive' DFT) then calculate the NMR parameters (also by DFT) 
+
+.. figure::  _static/workflow_specific.png
+
+
 What is MM? (Not explicity part of auto-ENRICH but the structures we use as start points for DFT optimisations are from MM):
 
 .. figure::  _static/mm.png
