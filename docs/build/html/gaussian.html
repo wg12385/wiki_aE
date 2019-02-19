@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Gaussian &mdash; wiki_aE 1.0.0 documentation</title>
+  <title>Interpreting Gaussian &mdash; wiki_aE 1.0.0 documentation</title>
   
 
   
@@ -81,13 +81,13 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Gaussian</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#interpretation-of-input-files">Interpretation of input files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interpreting Gaussian</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#failed-calculations">Failed calculations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-errors">Common errors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#interpretation-of-com-files">Interpretation of com files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#bluecrystal">BlueCrystal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#interpreting-bluecrystal">Interpreting BlueCrystal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ENRICH.html">ENRICH</a></li>
 </ul>
@@ -135,7 +135,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Gaussian</li>
+      <li>Interpreting Gaussian</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,16 +154,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gaussian">
-<span id="id1"></span><h1>Gaussian<a class="headerlink" href="#gaussian" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="interpretation-of-input-files">
-<span id="input-file-structure"></span><h2>Interpretation of input files<a class="headerlink" href="#interpretation-of-input-files" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="interpreting-gaussian">
+<span id="gaussian"></span><h1>Interpreting Gaussian<a class="headerlink" href="#interpreting-gaussian" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="failed-calculations">
+<span id="input-file-structure"></span><h2>Failed calculations<a class="headerlink" href="#failed-calculations" title="Permalink to this headline">¶</a></h2>
+<p>You should get a ‘failed’ folder after move_complete.py, vim the log files and find out what went wrong. Look at end of the log files for help with what went wrong. Common errors are in section below.
+(Hint: typing ‘G’ moves to bottom of file in vim, ‘gg’ moves to top)</p>
 </div>
 <div class="section" id="common-errors">
-<span id="id2"></span><h2>Common errors<a class="headerlink" href="#common-errors" title="Permalink to this headline">¶</a></h2>
-<p><strong>galloc errors</strong></p>
+<span id="id1"></span><h2>Common errors<a class="headerlink" href="#common-errors" title="Permalink to this headline">¶</a></h2>
+<p><strong>Galloc error</strong></p>
 <p>These mean someone on the node (physical computer your calculation is actually running on in the BlueCrystal computing cluster) has used up too much memory so your calculation doesn’t have enough so has been killed midway through.</p>
 <p>Answer: Resubmit file</p>
+<p><strong>‘Error termination in link 9999’</strong></p>
+<p>This (might) mean the structure hasn’t optimised and as hit the max number of steps to converge to a minima. Several options for dealing with these. Have a chat with someone who seems to know what they’re doing.</p>
 </div>
 <div class="section" id="interpretation-of-com-files">
 <span id="log-file-structure"></span><h2>Interpretation of com files<a class="headerlink" href="#interpretation-of-com-files" title="Permalink to this headline">¶</a></h2>
@@ -191,8 +195,8 @@
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="bluecrystal">
-<h1>BlueCrystal<a class="headerlink" href="#bluecrystal" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="interpreting-bluecrystal">
+<h1>Interpreting BlueCrystal<a class="headerlink" href="#interpreting-bluecrystal" title="Permalink to this headline">¶</a></h1>
 <p>Walltime - How long you’ve given the job to complete. If the job overruns this time BlueCrystal will terminate the job unfinished.</p>
 </div>
 
