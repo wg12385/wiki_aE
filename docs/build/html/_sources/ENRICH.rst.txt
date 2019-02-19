@@ -13,7 +13,6 @@ Theoretical basis for calculating NMR properties
 Magnetic shielding constants, referenced to TMS
 
 
-
 .. _ave_for_equiv:
 
 Averaging for equivalency
