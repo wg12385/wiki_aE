@@ -20,6 +20,7 @@ Commands you need to type into your terminal window (after logging in to BlueCry
     # Helpful extra instructions, do not type this into the terminal window
 
 Must learn basic unix commands,
+
    .. code-block:: bash
 
      pwd
