@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Gaussian" href="gaussian.html" />
+    <link rel="next" title="Interpreting Gaussian" href="gaussian.html" />
     <link rel="prev" title="Welcome to wiki_aE’s documentation!" href="index.html" /> 
 
   
@@ -82,6 +82,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basics-windows-computer-specifics">Basics: Windows computer specifics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-on-bluecrystal3">Install on BlueCrystal3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#run-on-bluecrystal3">Run on BlueCrystal3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-on-grendel">Install on Grendel</a></li>
@@ -90,10 +91,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Gaussian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gaussian.html#bluecrystal">BlueCrystal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Interpreting Gaussian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html#interpreting-bluecrystal">Interpreting BlueCrystal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scripts.html">Scripts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ENRICH.html">ENRICH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ENRICH.html#concept">Concept</a></li>
 </ul>
 
             
@@ -162,6 +164,8 @@
 <span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="basics">
 <span id="id2"></span><h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p><strong>*Using the command line*</strong></p>
+<p>Learn to use the command line, complete the tutorial at <a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">https://www.codecademy.com/learn/learn-the-command-line</a></p>
 <p>Commands you need to type into your terminal window (after logging in to BlueCrystal) are written in block quotes as below. Notes are preceeded by a #:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>type_this_into_terminal_window
@@ -182,14 +186,36 @@ ls
 </div>
 </div></blockquote>
 <p>When you run the later commands you need to make sure you’re running them from a particular folder you’ve set up for the molecules</p>
+<p><strong>*Vim*</strong></p>
+<p>Learn to use Vim, complete the tutorial at <a class="reference external" href="https://www.openvim.com/">https://www.openvim.com/</a> before continuing</p>
+<p><strong>*Further Notes*</strong></p>
 <p>auto-ENRICH is a set of python scripts to assist you in extracting and computing NMR parameters and conformer energies from molecular mechanics results using Gaussian. Find out what Gaussian is if you don’t know.</p>
 <p>BlueCrystal is a computing cluster. A room full of computers you can get to do calculations for you. We make Gaussian input files (.com files) specifying a certain thing we want Gaussian to do then submit them to BlueCrystal for random computers in the BlueCrystal to run and give back the answers. For reference your computer (probably) has 4 cores, on BlueCrystal you can sometimes use up to 400 cores at once. Running DFT is computationally very expensive so doing it on your personal laptop would take forever - hence we use BlueCrystal.</p>
 <p>We’d recommend you use Maestro (the free academic license version, most up to date version please) to view molecules. The .xyz files generated in some of auto-ENRICH should be draggable directly into Maestro to view.</p>
 </div>
+<div class="section" id="basics-windows-computer-specifics">
+<h2>Basics: Windows computer specifics<a class="headerlink" href="#basics-windows-computer-specifics" title="Permalink to this headline">¶</a></h2>
+<p><strong>*WinSCP*</strong></p>
+<p>Open WinSCP – This lets you transfer files from your area to BlueCrystal and vice versa.
+i.      Host name: grendel.chm.bris.ac.uk
+ii.     Username: UOB username
+iii.    Save settings and Login
+iv.     When prompted log in with your UOB username and BlueCrystal password
+v.      You can then use the save session the next time you open WinSCP to avoid entering the host name again</p>
+<p><strong>*PuTTY*</strong></p>
+<p>Open PuTTY – This lets you interact with BlueCrystal via a terminal.
+i.      Host Name: grendel.chm.bris.ac.uk
+ii.     Modify setting: Connection – SSH – X11 – Yes to Enable X11 Forwarding
+iii.    Save settings in the “Session” tab
+iv.     Login as: UOB username
+v.      Type in your BlueCrystal password when prompted (the password won’t be displayed onscreen)
+vi.     You can then use the saved session the next time you open WinSCP to avoid entering the host name again</p>
+<p>When we say ‘log in’ to BlueCrystal we will mean using PuTTY</p>
+</div>
 <div class="section" id="install-on-bluecrystal3">
 <span id="install-bc3"></span><h2>Install on BlueCrystal3<a class="headerlink" href="#install-on-bluecrystal3" title="Permalink to this headline">¶</a></h2>
 <p><strong>0</strong> Get IT to allow you to use Gaussian on BlueCrystal, email <a class="reference external" href="mailto:hpc-help&#37;&#52;&#48;bristol&#46;ac&#46;uk">hpc-help<span>&#64;</span>bristol<span>&#46;</span>ac<span>&#46;</span>uk</a> asking them to set up and give your account access to use Gaussian</p>
-<p><strong>1</strong> Get read access to this repository (email <a class="reference external" href="mailto:will&#46;gerrard&#37;&#52;&#48;bristol&#46;ac&#46;uk">will<span>&#46;</span>gerrard<span>&#64;</span>bristol<span>&#46;</span>ac<span>&#46;</span>uk</a> with your github account details or request access through github)</p>
+<p><strong>1</strong> Get access to auto-ENRICH by creating an account on GitHub.com (free one, obviously) then email your GitHub username (and ask for access to auto-ENRICH) to <a class="reference external" href="mailto:will&#46;gerrard&#37;&#52;&#48;bristol&#46;ac&#46;uk">will<span>&#46;</span>gerrard<span>&#64;</span>bristol<span>&#46;</span>ac<span>&#46;</span>uk</a></p>
 <p><strong>2</strong> Set up your environment:</p>
 <blockquote>
 <div><p><strong>2.0</strong> Log in to BlueCrystal and move to your home directory</p>
@@ -199,15 +225,18 @@ ls
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>2.1</strong> Load the conda module. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use. Top keep track of all the modules we load them into a particular ‘environment’</p>
+<p><strong>2.1</strong> Load the conda package. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use.</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load languages/python-anaconda-5.0.1-2.7
+<span class="c1"># You can copy and paste these commands rather than slowly typing them out BUT only one line at a time (to execute each command separately)</span>
+<span class="c1"># Note if on Windows using PuTTY terminal: paste is right clicking inside the PuTTY window not by pressing Ctrl-V like you normally would</span>
 </pre></div>
 </div>
 </div></blockquote>
 <p><strong>2.2</strong> Create an environment (Basically just a list of the modules we want to use, The piece of software we use Anaconda (conda for short) will load them every time you activate that environment) using Anaconda. We’re going to name the environment ‘myenv’ for simplicity</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name myenv
+<span class="c1"># Press y (and sometimes enter if it hasn&#39;t done anything) when things ask you if you want to do the command you&#39;ve just asked to do.</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -241,7 +270,9 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>3.2</strong> Copy the key (all that text) then exit vim</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>Esc key<span class="o">)</span>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy the key...</span>
+<span class="c1"># If using Windows and are using PuTTY then highlighting and right click will copy the text</span>
+<span class="c1"># Press the Esc key</span>
 :q!
 <span class="c1"># Closes file (without editing), this is basic use of vim, you should understand this.</span>
 </pre></div>
@@ -649,7 +680,7 @@ vim Groups.txt
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gaussian.html" class="btn btn-neutral float-right" title="Gaussian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="gaussian.html" class="btn btn-neutral float-right" title="Interpreting Gaussian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to wiki_aE’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
