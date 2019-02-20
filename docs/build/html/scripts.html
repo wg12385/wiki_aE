@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ENRICH" href="ENRICH.html" />
-    <link rel="prev" title="Gaussian" href="gaussian.html" /> 
+    <link rel="prev" title="Interpreting Gaussian" href="gaussian.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -81,13 +81,15 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Gaussian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html">Interpreting Gaussian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gaussian.html#interpreting-bluecrystal">Interpreting BlueCrystal</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Scripts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#details-on-each-script-in-auto-enrich">Details on each script in auto-ENRICH</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#details-on-each-script-in-nmr-processing">Details on each script in NMR processing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ENRICH.html">ENRICH</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ENRICH.html#concept">Concept</a></li>
 </ul>
 
             
@@ -163,11 +165,16 @@
 <dd>This script checks the folders optcom and nmrcom for finished gaussian calculations and copies them into output folders. Successful calculations are moved into the optlog or nmrlog folders, others are put into a failed folder.</dd>
 </dl>
 <p>xyz_to_opt.py</p>
-<p>This script takes .xyz files and converts the contained structures into gaussian com files for optimising the structures, using the preferences contained in ENRICH.prefs. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.</p>
+<p>This script takes all the .xyz files in your current folder and converts the contained structures into gaussian com files for optimising the structures, using the preferences contained in ENRICH.prefs. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.</p>
+<p>You can specify a partcular .xyz by giving its name as an argument</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py mymolecule.xyz
+<span class="c1"># This would allow you to specify a particular xyz file, you will likely not need this</span>
+</pre></div>
+</div>
 <p>opt_to_nmr.py</p>
 <p>This script takes the optimisation log files and converts the contained structures into gaussian com files for NMR calculation, using the preferences contained in ENRICH.prefs. Optionally it performs redundant conformer elimination to remove conformers which have optimised to the same structure. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.</p>
 <p>nmr_process.py</p>
-<p>This script takes gaussian NMR log files as well as the population file created by the opt_to_nmr.py script and creates a DATA_output file containing boltzmann weighted scalar coupling and chemical shifts. It also produces an xyz file from each conformer. You shouldnt need to change anything in this script unless youve altered file naming conventions from the previous scripts, it will look for gaussian log files in ‘nmrlog/<a href="#id2"><span class="problematic" id="id3">*</span></a>.log’ and a file called population_information.txt</p>
+<p>This script takes gaussian NMR log files as well as the population file created by the opt_to_nmr.py script and creates a DATA_output file containing boltzmann weighted scalar coupling and chemical shifts. It also produces an .xyz file from each conformer. You shouldn’t need to change anything in this script unless you’ve altered file naming conventions from the previous scripts, it will look for gaussian log files in ‘nmrlog/<a href="#id2"><span class="problematic" id="id3">*</span></a>.log’ and a file called population_information.txt</p>
 </div>
 <div class="section" id="details-on-each-script-in-nmr-processing">
 <span id="nmr-processing-explanation"></span><h2>Details on each script in NMR processing<a class="headerlink" href="#details-on-each-script-in-nmr-processing" title="Permalink to this headline">¶</a></h2>
@@ -185,7 +192,7 @@
         <a href="ENRICH.html" class="btn btn-neutral float-right" title="ENRICH" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="gaussian.html" class="btn btn-neutral" title="Gaussian" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gaussian.html" class="btn btn-neutral" title="Interpreting Gaussian" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

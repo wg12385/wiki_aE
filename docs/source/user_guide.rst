@@ -137,7 +137,7 @@ Install on BlueCrystal3
    **3.2** Copy the key (all that text) then exit vim
 
       .. code-block:: bash
-      
+
         # Copy the key...
         # If using Windows and are using PuTTY then highlighting and right click will copy the text
         # Press the Esc key
@@ -225,15 +225,21 @@ auto-ENRICH automates moving from a conformational search output to getting out 
      # Press the i key then edit the file
 
      # After editing...
-     (Esc key)
+     # Press the Esc key to exit edit mode
      :wq
-     # This saves and closes the file
+     # This saves and closes the file, you should have learnt vim.
+
+For solvent option it only takes specific words, for example chloroform, dmso, water, toluene, n-hexane (but not cdcl3, this will not run)
+If you want to use an odd solvent please consult http://gaussian.com/scrf/ -> More -> Solvents where there's a list
 
 **4** (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file
 
    .. code-block:: bash
 
       python ~/auto-ENRICH/RUN/xyz_to_opt.py
+      # tilde '~' is like ../ but it goes back to your home directory, the one you move to when you type 'cd' from any folder on the terminal
+
+The script automatically looks and produces com files (Gaussian DFT job submission files) for all the structures in all the xyz files in your current folder
 
 This will produce an optcom folder filled with .com files and .qsub file('s)
 What auto-ENRICH has done is make a load of input files (for each structure in the .xyz file) for Gaussian to run saying 'do a geometry optimisation (and then frequency calculation) with this starting structure based on the preferences we put in ENRICH.prefs'
