@@ -11,6 +11,10 @@ User Guide
 Basics
 ===================================
 
+***Using the command line***
+
+Learn to use the command line, complete the tutorial at https://www.codecademy.com/learn/learn-the-command-line
+
 Commands you need to type into your terminal window (after logging in to BlueCrystal) are written in block quotes as below. Notes are preceeded by a #:
 
   .. code-block:: bash
@@ -32,11 +36,43 @@ Must learn basic unix commands,
 
 When you run the later commands you need to make sure you're running them from a particular folder you've set up for the molecules
 
+***Vim***
+
+Learn to use Vim, complete the tutorial at https://www.openvim.com/ before continuing
+
+***Further Notes***
+
 auto-ENRICH is a set of python scripts to assist you in extracting and computing NMR parameters and conformer energies from molecular mechanics results using Gaussian. Find out what Gaussian is if you don't know.
 
 BlueCrystal is a computing cluster. A room full of computers you can get to do calculations for you. We make Gaussian input files (.com files) specifying a certain thing we want Gaussian to do then submit them to BlueCrystal for random computers in the BlueCrystal to run and give back the answers. For reference your computer (probably) has 4 cores, on BlueCrystal you can sometimes use up to 400 cores at once. Running DFT is computationally very expensive so doing it on your personal laptop would take forever - hence we use BlueCrystal.
 
 We'd recommend you use Maestro (the free academic license version, most up to date version please) to view molecules. The .xyz files generated in some of auto-ENRICH should be draggable directly into Maestro to view.
+
+
+
+Basics: Windows computer specifics
+===================================
+
+***WinSCP***
+
+Open WinSCP – This lets you transfer files from your area to BlueCrystal and vice versa.
+i.	Host name: grendel.chm.bris.ac.uk
+ii.	Username: UOB username
+iii.	Save settings and Login
+iv.	When prompted log in with your UOB username and BlueCrystal password
+v.	You can then use the save session the next time you open WinSCP to avoid entering the host name again
+
+***PuTTY***
+
+Open PuTTY – This lets you interact with BlueCrystal via a terminal.
+i.	Host Name: grendel.chm.bris.ac.uk
+ii.	Modify setting: Connection – SSH – X11 – Yes to Enable X11 Forwarding
+iii.	Save settings in the “Session” tab
+iv.	Login as: UOB username
+v.	Type in your BlueCrystal password when prompted (the password won’t be displayed onscreen)
+vi.	You can then use the saved session the next time you open WinSCP to avoid entering the host name again
+
+When we say 'log in' to BlueCrystal we will mean using PuTTY
 
 
 .. _install_bc3:
@@ -46,7 +82,7 @@ Install on BlueCrystal3
 
 **0** Get IT to allow you to use Gaussian on BlueCrystal, email hpc-help@bristol.ac.uk asking them to set up and give your account access to use Gaussian
 
-**1** Get read access to this repository (email will.gerrard@bristol.ac.uk with your github account details or request access through github)
+**1** Get access to auto-ENRICH by creating an account on GitHub.com (free one, obviously) then email your GitHub username (and ask for access to auto-ENRICH) to will.gerrard@bristol.ac.uk
 
 **2** Set up your environment:
 
@@ -57,17 +93,20 @@ Install on BlueCrystal3
         cd
         # This moves you to your home directory, this is basic unix command line, please learn.
 
-    **2.1** Load the conda module. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use. Top keep track of all the modules we load them into a particular 'environment'
+    **2.1** Load the conda package. This allows you to easily import modules (packs of pre-built code from other people) into Python (the programming language) to use.
 
       .. code-block:: bash
 
         module load languages/python-anaconda-5.0.1-2.7
+        # You can copy and paste these commands rather than slowly typing them out BUT only one line at a time (to execute each command separately)
+        # Note if on Windows using PuTTY terminal: paste is right clicking inside the PuTTY window not by pressing Ctrl-V like you normally would
 
     **2.2** Create an environment (Basically just a list of the modules we want to use, The piece of software we use Anaconda (conda for short) will load them every time you activate that environment) using Anaconda. We're going to name the environment 'myenv' for simplicity
 
       .. code-block:: bash
 
         conda create --name myenv
+        # Press y (and sometimes enter if it hasn't done anything) when things ask you if you want to do the command you've just asked to do.
 
     **2.3** Install modules to the environment we just created. We want to install openbabel and numpy. Numpy and SciPy are python modules that allows us maths easily in Python, while OpenBabel is a chemistry related module. The auto-ENRICH scripts use these modules.
 
@@ -98,8 +137,10 @@ Install on BlueCrystal3
    **3.2** Copy the key (all that text) then exit vim
 
       .. code-block:: bash
-
-        (Esc key)
+      
+        # Copy the key...
+        # If using Windows and are using PuTTY then highlighting and right click will copy the text
+        # Press the Esc key
         :q!
         # Closes file (without editing), this is basic use of vim, you should understand this.
 
