@@ -354,18 +354,22 @@ module load tools/git-2.18.0
 <span class="c1"># Press the i key then edit the file</span>
 
 <span class="c1"># After editing...</span>
-<span class="o">(</span>Esc key<span class="o">)</span>
+<span class="c1"># Press the Esc key to exit edit mode</span>
 :wq
-<span class="c1"># This saves and closes the file</span>
+<span class="c1"># This saves and closes the file, you should have learnt vim.</span>
 </pre></div>
 </div>
 </div></blockquote>
+<p>For solvent option it only takes specific words, for example chloroform, dmso, water, toluene, n-hexane (but not cdcl3, this will not run)
+If you want to use an odd solvent please consult <a class="reference external" href="http://gaussian.com/scrf/">http://gaussian.com/scrf/</a> -&gt; More -&gt; Solvents where there’s a list</p>
 <p><strong>4</strong> (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py
+<span class="c1"># tilde &#39;~&#39; is like ../ but it goes back to your home directory, the one you move to when you type &#39;cd&#39; from any folder on the terminal</span>
 </pre></div>
 </div>
 </div></blockquote>
+<p>The script automatically looks and produces com files (Gaussian DFT job submission files) for all the structures in all the xyz files in your current folder</p>
 <p>This will produce an optcom folder filled with .com files and .qsub file(‘s)
 What auto-ENRICH has done is make a load of input files (for each structure in the .xyz file) for Gaussian to run saying ‘do a geometry optimisation (and then frequency calculation) with this starting structure based on the preferences we put in ENRICH.prefs’
 The com files are the just Gaussian input files. The qsub file is so you can submit those gaussian com files as jobs on BlueCrystal.</p>
