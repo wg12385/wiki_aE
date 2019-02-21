@@ -1,4 +1,4 @@
-.. _user_guide:
+~.. _user_guide:
 
 
 ***************
@@ -232,11 +232,11 @@ auto-ENRICH automates moving from a conformational search output to getting out 
 For solvent option it only takes specific words, for example chloroform, dmso, water, toluene, n-hexane (but not cdcl3, this will not run)
 If you want to use an odd solvent please consult http://gaussian.com/scrf/ -> More -> Solvents where there's a list
 
-**4** (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file
+**4** (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script and telling it the name of your xyz file, eg if the xyz file was molecule.xyz
 
    .. code-block:: bash
 
-      python ~/auto-ENRICH/RUN/xyz_to_opt.py
+      python ~/auto-ENRICH/RUN/xyz_to_opt.py molecule.xyz
       # tilde '~' is like ../ but it goes back to your home directory, the one you move to when you type 'cd' from any folder on the terminal
 
 The script automatically looks and produces com files (Gaussian DFT job submission files) for all the structures in all the xyz files in your current folder
@@ -274,13 +274,13 @@ Each .qsub file submits 50 (or less) of the Gaussian input files (.com's) as job
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/move_complete.py
+    python ~/auto-ENRICH/RUN/move_complete.py
 
 **8** Create Gaussian NMR input files by running opt_to_nmr.py. This will also create a file called 'population_information.txt' containing conformer energies and populations
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/opt_to_nmr.py
+    python ~/auto-ENRICH/RUN/opt_to_nmr.py
 
 This will produce an nmrcom folder filled with .com files and .qsub file('s) similar to before.
 There will be a redundant conformer elimination (with the threshold you've specified in ENRICH.prefs) to see if any of the structures you have optimised from your .xyz file have converged to the same conformer (Note: Conformers are energy minima, you submitted energy minima based off of molecular mechanics, these are not be minima by DFT, you have submitted .xyz files with are molecular mechanics conformers as (hopefully) good start points for finding DFT conformers [for a particular basis set, functional, grid etc.]). You should open the .xyz file produced in the new 'OUTPUT' folder (ideally in Maestro) to check the threshold is appropriate and that we've actually removed all duplicates and not just very similar conformers, you should adjust the threshold accordingly.
@@ -305,13 +305,13 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s) jus
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/move_complete.py
+    python ~/auto-ENRICH/RUN/move_complete.py
 
 **12** Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn't deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/nmr_process.py
+    python ~/auto-ENRICH/RUN/nmr_process.py
 
 **13** Produce equivalency file: Open one of the conformers from your original input .xyz in Maestro (or PyMol or any xyz viewer), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
 
@@ -335,7 +335,7 @@ This will produce an nmrcom folder filled with .com files and .qsub file('s) jus
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/nmr_process.py equiv
+    python ~/auto-ENRICH/RUN/nmr_process.py equiv
 
 **Epilogue** Deal with the failures in the failed folder by resubmitting them manually, talk to someone with more experience + read FAQ
 
@@ -453,10 +453,9 @@ auto-ENRICH automates moving from a conformational search output to getting out 
 
    .. code-block:: bash
 
-    cp -rf ../../auto-ENRICH/ENRICH.prefs ./
+    cp -rf ~/auto-ENRICH/ENRICH.prefs ./
     #The cp means copy, first place is where it's copying from,
     #the other is where its copying to, your current directory
-    #If its more/less folders above use more/less ../'s before the auto-ENRICH
     #This applies for all that follows
 
 
@@ -473,7 +472,7 @@ auto-ENRICH automates moving from a conformational search output to getting out 
 
    .. code-block:: bash
 
-      python ../../auto-ENRICH/RUN/xyz_to_opt.py
+      python ~/auto-ENRICH/RUN/xyz_to_opt.py
 
 This will produce an optcom folder filled with .com files and .qsub file('s)
 
@@ -499,13 +498,13 @@ This will produce an optcom folder filled with .com files and .qsub file('s)
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/move_complete.py
+    python ~/auto-ENRICH/RUN/move_complete.py
 
 **8** Create NMR input files by running opt_to_nmr.py. This will also create a file called 'population.txt' containing conformer energies
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/opt_to_nmr.py
+    python ~/auto-ENRICH/RUN/opt_to_nmr.py
 
 This will produce an nmrcom folder filled with .com files and .qsub file('s)
 There will be a redundant conformer elimination (with the threshold you've specified in ENRICH.prefs) to see if any of the structures you have optimised from your .xyz file have converged to the same conformer (Note: Conformers are energy minima, you submitted energy minima based off of molecular mechanics, these are not be minima by DFT, you have submitted .xyz files with are molecular mechanics conformers as (hopefully) good start points for finding DFT conformers [for a particular basis set, functional, grid etc.]). You should open the .xyz file produced in the new 'OUTPUT' folder (ideally in Maestro) to check the threshold is appropriate and that we've actually removed all duplicates and not just very similar conformers, you should adjust the threshold accordingly.
@@ -526,13 +525,13 @@ There will be a redundant conformer elimination (with the threshold you've speci
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/move_complete.py
+    python ~/auto-ENRICH/RUN/move_complete.py
 
 **12** Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn't deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/nmr_process.py
+    python ~/auto-ENRICH/RUN/nmr_process.py
 
 **13** Produce equivalency file: Open one of the conformers from your original input .xyz in PyMol (normally, not in terminal), In the sidebar go to H - everything then S - sticks and then L - atom identifiers - ID. While in your molecules folder make a file called "Groups.txt" and make list of "your own label" - numbers of atoms that are equivalent (eg H's on methyl groups) .
 
@@ -553,7 +552,7 @@ There will be a redundant conformer elimination (with the threshold you've speci
 
   .. code-block:: bash
 
-    python ../../auto-ENRICH/RUN/nmr_process.py equiv
+    python ~/auto-ENRICH/RUN/nmr_process.py equiv
 
 **Epilogue** Deal with the failures in the failed folder by resubmitting them manually, talk to someone with more experience + read FAQ
 

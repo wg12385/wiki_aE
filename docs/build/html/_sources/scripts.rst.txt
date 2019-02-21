@@ -20,14 +20,15 @@ This is just a one line github command to fetch the latest versions of the nmr_p
 
 xyz_to_opt.py
 
-This script takes all the .xyz files in your current folder and converts the contained structures into gaussian com files for optimising the structures, using the preferences contained in ENRICH.prefs. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.
+This script takes the specified .xyz file in your current folder and converts the contained structures into Gaussian com files for optimising the structures, using the preferences contained in ENRICH.prefs. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.
 
-You can specify a partcular .xyz by giving its name as an argument
+If the .xyz file contains a numbering system (eg if you're doing a population cull after 'cheap' DFT from opt_cull.py) then giving it the argument 'track' after the xyz file will get it to keep the numbering system
 
 .. code-block:: bash
 
-   python ~/auto-ENRICH/RUN/xyz_to_opt.py mymolecule.xyz
-   # This would allow you to specify a particular xyz file, you will likely not need this
+   python ~/auto-ENRICH/RUN/xyz_to_opt.py mymolecule.xyz track
+   # Will keep numbering system in xyz file
+
 
 
 opt_to_nmr.py
