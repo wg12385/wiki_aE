@@ -160,10 +160,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="user-guide">
-<span id="id1"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+  <p>~.. _user_guide:</p>
+<div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="basics">
-<span id="id2"></span><h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
 <p><strong>*Using the command line*</strong></p>
 <p>Learn to use the command line, complete the tutorial at <a class="reference external" href="https://www.codecademy.com/learn/learn-the-command-line">https://www.codecademy.com/learn/learn-the-command-line</a></p>
 <p>Commands you need to type into your terminal window (after logging in to BlueCrystal) are written in block quotes as below. Notes are preceeded by a #:</p>
@@ -263,7 +264,7 @@ conda install -n myenv numpy scipy
 <span class="c1"># vim bit at the start means use vim (text editing package) to open the file ~/blah. The ~/ is unix command line shorthand for your &#39;root&#39; directory (the one you move to when you cd, it&#39;s basically your home folder. If you don&#39;t know what cd does, please go back to start and do a unix command line tutorial).</span>
 </pre></div>
 </div>
-<div class="figure" id="id5">
+<div class="figure" id="id4">
 <img alt="_images/sshkey.png" src="_images/sshkey.png" />
 <p class="caption"><span class="caption-text">Example ssh key</span></p>
 </div>
@@ -280,7 +281,7 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>3.3</strong> On Normal Computer: Login to Github.com (after making an account) then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like BlueCrystal3. Github is a website that we store our auto-ENRICH code on, by giving it your SSH key we are allowing your BlueCrystal account to access your Github account.</p>
 <blockquote>
-<div><div class="figure" id="id6">
+<div><div class="figure" id="id5">
 <img alt="_images/ssh_github.png" src="_images/ssh_github.png" />
 <p class="caption"><span class="caption-text">Navigate through github.com to input ssh key</span></p>
 </div>
@@ -362,9 +363,9 @@ module load tools/git-2.18.0
 </div></blockquote>
 <p>For solvent option it only takes specific words, for example chloroform, dmso, water, toluene, n-hexane (but not cdcl3, this will not run)
 If you want to use an odd solvent please consult <a class="reference external" href="http://gaussian.com/scrf/">http://gaussian.com/scrf/</a> -&gt; More -&gt; Solvents where there’s a list</p>
-<p><strong>4</strong> (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file</p>
+<p><strong>4</strong> (While in folder for your molecule) Create optimisation jobs based on your choices in ENRICH.prefs by running xyz_to_opt.py script and telling it the name of your xyz file, eg if the xyz file was molecule.xyz</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py molecule.xyz
 <span class="c1"># tilde &#39;~&#39; is like ../ but it goes back to your home directory, the one you move to when you type &#39;cd&#39; from any folder on the terminal</span>
 </pre></div>
 </div>
@@ -398,13 +399,13 @@ qstat -nu &lt;username&gt; -t
 </div></blockquote>
 <p><strong>7</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called optlog) and fails (failed folder)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/move_complete.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/move_complete.py
 </pre></div>
 </div>
 </div></blockquote>
 <p><strong>8</strong> Create Gaussian NMR input files by running opt_to_nmr.py. This will also create a file called ‘population_information.txt’ containing conformer energies and populations</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/opt_to_nmr.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/opt_to_nmr.py
 </pre></div>
 </div>
 </div></blockquote>
@@ -425,13 +426,13 @@ qsub molecule1_NMR_2.qsub
 <p><strong>10</strong> Wait for the calculations to complete…</p>
 <p><strong>11</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called nmrlog) and fails (failed folder)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/move_complete.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/move_complete.py
 </pre></div>
 </div>
 </div></blockquote>
 <p><strong>12</strong> Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn’t deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/nmr_process.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/nmr_process.py
 </pre></div>
 </div>
 </div></blockquote>
@@ -448,14 +449,14 @@ vim Groups.txt
 <span class="c1"># save and close file</span>
 </pre></div>
 </div>
-<div class="figure" id="id7">
+<div class="figure" id="id6">
 <img alt="_images/equiv.png" src="_images/equiv.png" />
 <p class="caption"><span class="caption-text">Format for doing equivalency maths, note this molecule has C<sub>2</sub> symmetry so has funky numbering</span></p>
 </div>
 </div></blockquote>
 <p><strong>14</strong> Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings &gt; 0.5 Hz and NOEs.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/nmr_process.py equiv
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/nmr_process.py equiv
 </pre></div>
 </div>
 </div></blockquote>
@@ -518,7 +519,7 @@ conda install -n myenv numpy scipy
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim .ssh/id_rsa.pub
 </pre></div>
 </div>
-<div class="figure" id="id8">
+<div class="figure" id="id7">
 <img alt="_images/sshkey.png" src="_images/sshkey.png" />
 <p class="caption"><span class="caption-text">Example ssh key</span></p>
 </div>
@@ -532,7 +533,7 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>3.3</strong> Login to Github.com then go to Settings - SSH and GPG keys - New SSH key and paste the key and give it a simple title like Grendel</p>
 <blockquote>
-<div><div class="figure" id="id9">
+<div><div class="figure" id="id8">
 <img alt="_images/ssh_github.png" src="_images/ssh_github.png" />
 <p class="caption"><span class="caption-text">Navigate through github.com to input ssh key</span></p>
 </div>
@@ -566,10 +567,9 @@ conda install -n myenv numpy scipy
 <p><strong>1</strong> Make a folder with the molecule name and put your .xyz file in it, cd into that folder</p>
 <p><strong>2</strong> Copy the preferences file from the auto-ENRICH folder then open it and decide what you want to run. If the auto-ENRICH folder is 2 directories above your molecules folder (which you are now in) type:</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -rf ../../auto-ENRICH/ENRICH.prefs ./
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -rf ~/auto-ENRICH/ENRICH.prefs ./
 <span class="c1">#The cp means copy, first place is where it&#39;s copying from,</span>
 <span class="c1">#the other is where its copying to, your current directory</span>
-<span class="c1">#If its more/less folders above use more/less ../&#39;s before the auto-ENRICH</span>
 <span class="c1">#This applies for all that follows</span>
 </pre></div>
 </div>
@@ -585,7 +585,7 @@ conda install -n myenv numpy scipy
 </div></blockquote>
 <p><strong>4</strong> Create geometry optimisation and frequency correction input files for Gaussian based on your choices in ENRICH.prefs by running xyz_to_opt.py script from the folder containing your .xyz file</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/xyz_to_opt.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py
 </pre></div>
 </div>
 </div></blockquote>
@@ -610,13 +610,13 @@ qstat -nu &lt;username&gt; -t
 </div></blockquote>
 <p><strong>7</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called optlog) and fails (failed folder)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/move_complete.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/move_complete.py
 </pre></div>
 </div>
 </div></blockquote>
 <p><strong>8</strong> Create NMR input files by running opt_to_nmr.py. This will also create a file called ‘population.txt’ containing conformer energies</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/opt_to_nmr.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/opt_to_nmr.py
 </pre></div>
 </div>
 </div></blockquote>
@@ -635,13 +635,13 @@ bash molecule1_NMR_2.qsub
 <p><strong>10</strong> Wait for the calculations to complete…</p>
 <p><strong>11</strong> Run move_complete.py to sort your calculations into successes (they’ll be moved to a folder called nmrlog) and fails (failed folder)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/move_complete.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/move_complete.py
 </pre></div>
 </div>
 </div></blockquote>
 <p><strong>12</strong> Run nmr_process.py to get the raw DFT NMR experimental measurables out, this will be numbered based on atoms in the .xyz file and assumes all atoms inequivalent on NMR timescale (doesn’t deal with methyls/symmetry). This will produce an OUTPUT folder with the .xyz files for all your DFT geometry optimised conformers</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/nmr_process.py
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/nmr_process.py
 </pre></div>
 </div>
 </div></blockquote>
@@ -655,14 +655,14 @@ vim Groups.txt
 <span class="c1"># save and close file</span>
 </pre></div>
 </div>
-<div class="figure" id="id10">
+<div class="figure" id="id9">
 <img alt="_images/equiv.png" src="_images/equiv.png" />
 <p class="caption"><span class="caption-text">Format for doing equivalency maths, note this molecule has C<sub>2</sub> symmetry</span></p>
 </div>
 </div></blockquote>
 <p><strong>14</strong> Run nmr_process.py with equivalency file by specifying equiv as an argument. This will produce two more files in OUTPUT ending in _equiv.txt and _equiv_pretty.txt, The pretty one will show various J couplings &gt; 0.5 Hz and NOEs.</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ../../auto-ENRICH/RUN/nmr_process.py equiv
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/nmr_process.py equiv
 </pre></div>
 </div>
 </div></blockquote>
@@ -672,7 +672,7 @@ vim Groups.txt
 <span id="misc-user-guide"></span><h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="faq">
-<span id="id4"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

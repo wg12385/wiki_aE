@@ -165,10 +165,10 @@
 <dd>This script checks the folders optcom and nmrcom for finished gaussian calculations and copies them into output folders. Successful calculations are moved into the optlog or nmrlog folders, others are put into a failed folder.</dd>
 </dl>
 <p>xyz_to_opt.py</p>
-<p>This script takes all the .xyz files in your current folder and converts the contained structures into gaussian com files for optimising the structures, using the preferences contained in ENRICH.prefs. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.</p>
-<p>You can specify a partcular .xyz by giving its name as an argument</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py mymolecule.xyz
-<span class="c1"># This would allow you to specify a particular xyz file, you will likely not need this</span>
+<p>This script takes the specified .xyz file in your current folder and converts the contained structures into Gaussian com files for optimising the structures, using the preferences contained in ENRICH.prefs. It also produces a submission script and accompanying COM_ARRAY file which is just a list of the com files for submission.</p>
+<p>If the .xyz file contains a numbering system (eg if you’re doing a population cull after ‘cheap’ DFT from opt_cull.py) then giving it the argument ‘track’ after the xyz file will get it to keep the numbering system</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python ~/auto-ENRICH/RUN/xyz_to_opt.py mymolecule.xyz track
+<span class="c1"># Will keep numbering system in xyz file</span>
 </pre></div>
 </div>
 <p>opt_to_nmr.py</p>
