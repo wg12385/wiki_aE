@@ -572,7 +572,7 @@ I - Irradiated protons, S - Observed protons, i - Conformer.
 
 .. math::
 
-  r_{eff}(I_{a}, S_{b}) = 1/{n_{I} n_{S}}  \sum_{i, I_{a}, S_{b}}  r_{(I_{a}, S_{b})}^{-6} x p_{i}
+  r_{eff}(I_{a}, S_{b}) = \frac{1}{n_{I} n_{S}}  \sum_{i, I_{a}, S_{b}}  r_{(I_{a}, S_{b})}^{-6} * p_{i}
 
 
 
