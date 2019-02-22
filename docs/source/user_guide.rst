@@ -586,7 +586,7 @@ The refinement script with divide this number by :math:`n_{I} n_{S}` to get a sc
 
 .. math::
 
-  (\frac{r_{eff}(S^{2}, S^{1})}{r_{eff}(\*reference pair*)})^{-6} =  \frac{\eta_{scaled}(S^{2}, S^{1})}{\eta_{scaled}(\*reference pair*)}
+  (\frac{r_{eff}(S^{2}, S^{1})}{r_{eff}(\*reference*)})^{-6} =  \frac{\eta_{scaled}(S^{2}, S^{1})}{\eta_{scaled}(\*reference*)}
 
 
 
