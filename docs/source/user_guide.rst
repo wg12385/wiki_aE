@@ -580,13 +580,13 @@ For use with the refinement script (not yet completed) to process the NOE data y
 
 Set the integral of the irradiate proton to :math:`{n_{I}} * 1000`
 
-Measure the integral, :math:`\nu_{raw}`  to the other protons (Only integrals > 0.5% of 1000 should be recorded as valid due to spin diffusion effects)
+Measure the integral, :math:`\eta_{raw}`  to the other protons (Only integrals > 0.5% of 1000 should be recorded as valid due to spin diffusion effects)
 
-The refinement script with divide this number by :math:`n_{I} n_{S}` to get a scaled integral :math:`\nu_{scaled}`, this should then obey:
+The refinement script with divide this number by :math:`n_{I} n_{S}` to get a scaled integral :math:`\eta_{scaled}`, this should then obey:
 
 .. math::
 
-  (\fraction{r_{eff}(S^{2}, S^{1})}{r_{eff}(reference pair)})^{-6} =  \fraction{\nu_{scaled}(S^{2}, S^{1})}{\nu_{scaled}(reference pair)}
+  (\frac{r_{eff}(S^{2}, S^{1})}{r_{eff}(reference pair)})^{-6} =  \frac{\eta_{scaled}(S^{2}, S^{1})}{\eta_{scaled}(reference pair)}
 
 
 
