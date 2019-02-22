@@ -561,6 +561,12 @@ There will be a redundant conformer elimination (with the threshold you've speci
 Miscellaneous
 =============================
 
+PANIC: NOEs method to work in tandem with auto-ENRICH
+=========================================================
+
+.. math::
+
+  r_{eff(A_{i},B_{j})} = \sum_{i,j} 
 
 
 
