@@ -564,19 +564,29 @@ Miscellaneous
 PANIC: NOEs method to work in tandem with auto-ENRICH
 =========================================================
 
-I - Irradiated protons, S - Observed protons, i - Conformer.
+I: Irradiated protons, S: Observed protons, :math:`i`: Conformer.
 
-:math:`r_{(I_{a}, S_{b})} =` Distance between irradiated proton I_{atom a} and observed proton S_{atom b}
+:math:`r_{(I_{a}, S_{b})} =` Distance between irradiated proton :math:`I_{atom a}` and observed proton :math:`S_{atom b}`
 
-:math:`p_{i} =` Population of conformer i
+:math:`p_{i} =` Population of conformer :math:`i`
 
 :math:`{n_{I}} =` Number of different (static) protons positions the irradiated atom interconverts between on NMR timescale, e.g. 3 for Me H's
 
 .. math::
 
-  r_{eff}(I_{a}, S_{b})^{-6} = \frac{1}{n_{I} n_{S}}  \sum_{i, a, b}  r_{(I_{a}, S_{b})}^{-6} * p_{i}
+  r_{eff}(I, S)^{-6} = \frac{1}{n_{I} n_{S}}  \sum_{i, a, b}  r_{(I_{a}, S_{b})}^{-6} * p_{i}
 
+For use with the refinement script (not yet completed) to process the NOE data you need to:
 
+Set the integral of the irradiate proton to :math:`{n_{I}} * 1000`
+
+Measure the integral, :math:`\nu_{raw}`  to the other protons (Only integrals > 0.5% of 1000 should be recorded as valid due to spin diffusion effects)
+
+The refinement script with divide this number by :math:`n_{I} n_{S}` to get a scaled integral :math:`\nu_{scaled}`, this should then obey:
+
+.. math::
+
+  (\fraction{r_{eff}(S^{2}, S^{1})}{r_{eff}(reference pair)})^{-6} =  \fraction{\nu_{scaled}(S^{2}, S^{1})}{\nu_{scaled}(reference pair)}
 
 
 
