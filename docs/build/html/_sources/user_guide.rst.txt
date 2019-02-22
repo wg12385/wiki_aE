@@ -566,15 +566,13 @@ PANIC: NOEs method to work in tandem with auto-ENRICH
 
 I - Irradiated protons, S - Observed protons, i - Conformer.
 
-.. math::
-
-  r_{(I_{a}, S_{b})} = Distance between irradiated proton I_{atom a} and observed proton S_{atom b}
-  p_{i} = Population of conformer i
-  {n_{I}} = Number of different (static) protons positions the irradiated atom interconverts between on NMR timescale, e.g. 3 for Me H's
+.. math::`r_{(I_{a}, S_{b})} =` Distance between irradiated proton I_{atom a} and observed proton S_{atom b}
+.. math::`p_{i} =` Population of conformer i
+.. math::`{n_{I}} =` Number of different (static) protons positions the irradiated atom interconverts between on NMR timescale, e.g. 3 for Me H's
 
 .. math::
 
-  r_{eff (I_{a}, S_{b})} = 1/{n_{I} n_{S}}  \sum_{i, I_{a}, S_{b}}  r_{(I_{a}, S_{b})}^{-6} * p_{i}
+  r_{eff}(I_{a}, S_{b}) = 1/{n_{I} n_{S}}  \sum_{i, I_{a}, S_{b}}  r_{(I_{a}, S_{b})}^{-6} x p_{i}
 
 
 
