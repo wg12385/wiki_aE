@@ -685,7 +685,8 @@ vim Groups.txt
 <p>Measure the integral, <span class="math notranslate nohighlight">\(\eta_{raw}\)</span>  to the other protons (Only integrals &gt; 0.5% of 1000 should be recorded as valid due to spin diffusion effects)</p>
 <p>The refinement script with divide this number by <span class="math notranslate nohighlight">\(n_{I} n_{S}\)</span> to get a scaled integral <span class="math notranslate nohighlight">\(\eta_{scaled}\)</span>, this should then obey:</p>
 <div class="math notranslate nohighlight">
-\[(\frac{r_{eff}(S^{2}, S^{1})}{r_{eff}(\*reference*)})^{-6} =  \frac{\eta_{scaled}(S^{2}, S^{1})}{\eta_{scaled}(\*reference*)}\]</div>
+\[(\frac{r_{eff}(I,S)}{r_{eff}(ref)})^{-6} =  \frac{\eta_{scaled}(I,S)}{\eta_{scaled}(ref)}\]</div>
+<p>We use the ‘averaged’ version of <span class="math notranslate nohighlight">\(r_{eff}\)</span> because for a Me to a proton / Me to Me should give an <span class="math notranslate nohighlight">\(r_{eff}\)</span> between the max and minimum distance between pairs of atoms on the two groups. For <span class="math notranslate nohighlight">\(C_{2}\)</span> symmetric molecules or molecules with enantiotopic protons it does not represent something simple to interpret.</p>
 </div>
 <div class="section" id="faq">
 <span id="id3"></span><h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>

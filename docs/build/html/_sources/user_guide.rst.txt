@@ -586,9 +586,9 @@ The refinement script with divide this number by :math:`n_{I} n_{S}` to get a sc
 
 .. math::
 
-  (\frac{r_{eff}(S^{2}, S^{1})}{r_{eff}(\*reference*)})^{-6} =  \frac{\eta_{scaled}(S^{2}, S^{1})}{\eta_{scaled}(\*reference*)}
+  (\frac{r_{eff}(I,S)}{r_{eff}(ref)})^{-6} =  \frac{\eta_{scaled}(I,S)}{\eta_{scaled}(ref)}
 
-
+We use the 'averaged' version of :math:`r_{eff}` because for a Me to a proton / Me to Me should give an :math:`r_{eff}` between the max and minimum distance between pairs of atoms on the two groups. For :math:`C_{2}` symmetric molecules or molecules with enantiotopic protons it does not represent something simple to interpret.
 
 
 
