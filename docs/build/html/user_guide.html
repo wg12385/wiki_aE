@@ -675,15 +675,14 @@ vim Groups.txt
 <div class="section" id="panic-noes-method-to-work-in-tandem-with-auto-enrich">
 <h2>PANIC: NOEs method to work in tandem with auto-ENRICH<a class="headerlink" href="#panic-noes-method-to-work-in-tandem-with-auto-enrich" title="Permalink to this headline">¶</a></h2>
 <p>I: Irradiated protons, S: Observed protons, <span class="math notranslate nohighlight">\(i\)</span>: Conformer.</p>
-<p><span class="math notranslate nohighlight">\(r_{(I_{a}, S_{b})} =\)</span> Distance between irradiated proton <span class="math notranslate nohighlight">\(I_{atom a}\)</span> and observed proton <span class="math notranslate nohighlight">\(S_{atom b}\)</span></p>
+<p><span class="math notranslate nohighlight">\(r_{(I_{a}, S_{b})} =\)</span> Distance between irradiated proton <span class="math notranslate nohighlight">\(I_{atom_a}\)</span> and observed proton <span class="math notranslate nohighlight">\(S_{atom_b}\)</span></p>
 <p><span class="math notranslate nohighlight">\(p_{i} =\)</span> Population of conformer <span class="math notranslate nohighlight">\(i\)</span></p>
 <p><span class="math notranslate nohighlight">\({n_{I}} =\)</span> Number of different (static) protons positions the irradiated atom interconverts between on NMR timescale, e.g. 3 for Me H’s</p>
 <div class="math notranslate nohighlight">
 \[r_{eff}(I, S)^{-6} = \frac{1}{n_{I} n_{S}}  \sum_{i, a, b}  r_{(I_{a}, S_{b})}^{-6} * p_{i}\]</div>
-<p>For use with the refinement script (not yet completed) to process the NOE data you need to:</p>
-<p>Set the integral of the irradiate proton to <span class="math notranslate nohighlight">\({n_{I}} * 1000\)</span></p>
+<p>Set the integral of the irradiate proton to <span class="math notranslate nohighlight">\(1000\)</span></p>
 <p>Measure the integral, <span class="math notranslate nohighlight">\(\eta_{raw}\)</span>  to the other protons (Only integrals &gt; 0.5% of 1000 should be recorded as valid due to spin diffusion effects)</p>
-<p>The refinement script with divide this number by <span class="math notranslate nohighlight">\(n_{I} n_{S}\)</span> to get a scaled integral <span class="math notranslate nohighlight">\(\eta_{scaled}\)</span>, this should then obey:</p>
+<p>You then need to divide the integral by <span class="math notranslate nohighlight">\(n_{S}\)</span> to get a scaled integral <span class="math notranslate nohighlight">\(\eta_{scaled}\)</span>, this should then obey:</p>
 <div class="math notranslate nohighlight">
 \[(\frac{r_{eff}(I,S)}{r_{eff}(ref)})^{-6} =  \frac{\eta_{scaled}(I,S)}{\eta_{scaled}(ref)}\]</div>
 <p>We use the ‘averaged’ version of <span class="math notranslate nohighlight">\(r_{eff}\)</span> because for a Me to a proton / Me to Me should give an <span class="math notranslate nohighlight">\(r_{eff}\)</span> between the max and minimum distance between pairs of atoms on the two groups. For <span class="math notranslate nohighlight">\(C_{2}\)</span> symmetric molecules or molecules with enantiotopic protons it does not represent something simple to interpret.</p>

@@ -566,7 +566,7 @@ PANIC: NOEs method to work in tandem with auto-ENRICH
 
 I: Irradiated protons, S: Observed protons, :math:`i`: Conformer.
 
-:math:`r_{(I_{a}, S_{b})} =` Distance between irradiated proton :math:`I_{atom a}` and observed proton :math:`S_{atom b}`
+:math:`r_{(I_{a}, S_{b})} =` Distance between irradiated proton :math:`I_{atom_a}` and observed proton :math:`S_{atom_b}`
 
 :math:`p_{i} =` Population of conformer :math:`i`
 
@@ -576,13 +576,11 @@ I: Irradiated protons, S: Observed protons, :math:`i`: Conformer.
 
   r_{eff}(I, S)^{-6} = \frac{1}{n_{I} n_{S}}  \sum_{i, a, b}  r_{(I_{a}, S_{b})}^{-6} * p_{i}
 
-For use with the refinement script (not yet completed) to process the NOE data you need to:
-
-Set the integral of the irradiate proton to :math:`{n_{I}} * 1000`
+Set the integral of the irradiate proton to :math:`1000`
 
 Measure the integral, :math:`\eta_{raw}`  to the other protons (Only integrals > 0.5% of 1000 should be recorded as valid due to spin diffusion effects)
 
-The refinement script with divide this number by :math:`n_{I} n_{S}` to get a scaled integral :math:`\eta_{scaled}`, this should then obey:
+You then need to divide the integral by :math:`n_{S}` to get a scaled integral :math:`\eta_{scaled}`, this should then obey:
 
 .. math::
 
